@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Link from "react-router-dom";
 
 class Button extends Component {
   state = {
@@ -9,7 +10,7 @@ class Button extends Component {
   render() {
     return (
       <React.Fragment>
-        <button class={this.state.color}>{this.state.text}</button>
+        <button className={this.state.color}>{this.state.text}</button>
       </React.Fragment>
     );
   }
