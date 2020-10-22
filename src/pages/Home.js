@@ -1,8 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "../index.css";
 import "bulma/css/bulma.css";
-import Button from "../components/button";
 
 export default function Home() {
   return (
