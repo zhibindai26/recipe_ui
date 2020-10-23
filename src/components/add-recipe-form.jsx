@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class FindRecipeForm extends Component {
+class AddRecipeForm extends Component {
   constructor(props) {
     super(props);
 
@@ -11,6 +11,8 @@ class FindRecipeForm extends Component {
       cuisine: "",
       main_ingredient: "",
       source: "",
+      page: "",
+      link: "",
     };
   }
 
@@ -38,8 +40,14 @@ class FindRecipeForm extends Component {
     this.setState({ source: event.target.value });
   };
 
+  handlePage = (event) => {
+    this.setState({ page: event.target.value });
+  };
+  handleLink = (event) => {
+    this.setState({ link: event.target.value });
+  };
   handleSubmit = (event) => {
-    alert(`${this.state.meal_type}`);
+    alert(`${this.state.page}`);
     event.preventDefault();
   };
 
@@ -51,8 +59,9 @@ class FindRecipeForm extends Component {
       cuisine,
       main_ingredient,
       source,
+      page,
+      link,
     } = this.state;
-
     const mt = ["A", "B"];
 
     return (
@@ -60,7 +69,7 @@ class FindRecipeForm extends Component {
         <section class="hero hero is-info is-primary is-bold">
           <div class="hero-body">
             <div class="container">
-              <h1 class="title">Search for Existing Recipes</h1>
+              <h1 class="title">Add a New Recipe to the Recipe Database</h1>
             </div>
           </div>
         </section>
@@ -157,6 +166,28 @@ class FindRecipeForm extends Component {
               </datalist>
             </div>
           </div>
+          <div className="field">
+            <label className="label is-medium">Page</label>
+            <div className="control">
+              <input
+                class="input is-medium"
+                type="text"
+                value={page}
+                onChange={this.handlePage}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label is-medium">Link</label>
+            <div className="control">
+              <input
+                class="input is-medium"
+                type="text"
+                value={link}
+                onChange={this.handleLink}
+              />
+            </div>
+          </div>
 
           <div class="field is-grouped">
             <div class="control">
@@ -169,4 +200,4 @@ class FindRecipeForm extends Component {
   }
 }
 
-export default FindRecipeForm;
+export default AddRecipeForm;
