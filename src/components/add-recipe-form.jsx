@@ -1,4 +1,13 @@
 import React, { Component } from "react";
+import {
+  Hero,
+  APIKeyForm,
+  RecipeName,
+  MealType,
+  MainIngredient,
+  Source,
+  Cuisine,
+} from "./base-form";
 
 class AddRecipeForm extends Component {
   constructor(props) {
@@ -47,7 +56,7 @@ class AddRecipeForm extends Component {
     this.setState({ link: event.target.value });
   };
   handleSubmit = (event) => {
-    alert(`${this.state.page}`);
+    alert(`${this.state.cuisine}`);
     event.preventDefault();
   };
 
@@ -67,106 +76,31 @@ class AddRecipeForm extends Component {
 
     return (
       <div className="container">
-        <section class="hero hero is-info is-primary is-bold">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">Add a New Recipe to the Recipe Database</h1>
-            </div>
-          </div>
-        </section>
+        <Hero title="Add a New Recipe to the Recipe Database" />
 
         <form onSubmit={this.handleSubmit}>
-          <div className="field">
-            <label className="label is-medium">API Key</label>
-            <div className="control">
-              <input
-                class="input is-medium"
-                type="text"
-                value={api_key}
-                onChange={this.handleAPIKey}
-              />
-            </div>
-          </div>
+          <APIKeyForm api_key={api_key} handleAPIKey={this.handleAPIKey} />
+          <RecipeName
+            recipe_name={recipe_name}
+            handleRecipe={this.handleRecipe}
+          />
+          <MealType
+            meal_type={meal_type}
+            handleMeal={this.handleMeal}
+            mt={mt}
+          />
+          <Cuisine
+            cuisine={cuisine}
+            handleCuisine={this.handleCuisine}
+            mt={mt}
+          />
+          <MainIngredient
+            main_ingredient={main_ingredient}
+            handleMainIngredient={this.handleMainIngredient}
+            mt={mt}
+          />
+          <Source source={source} handleSource={this.handleSource} mt={mt} />
 
-          <div className="field">
-            <label className="label is-medium">Recipe Name</label>
-            <div className="control">
-              <input
-                class="input is-medium"
-                type="text"
-                value={recipe_name}
-                onChange={this.handleRecipe}
-              />
-            </div>
-          </div>
-
-          <div className="field">
-            <label class="label is-medium">Meal Type</label>
-            <div class="control">
-              <input
-                type="text"
-                list="meal_type"
-                value={meal_type}
-                onChange={this.handleMeal}
-              />
-              <datalist id="meal_type">
-                {mt.map((meal, index) => (
-                  <option key={index}>{meal}</option>
-                ))}
-              </datalist>
-            </div>
-          </div>
-
-          <div className="field">
-            <label class="label is-medium">Cuisine</label>
-            <div class="control">
-              <input
-                type="text"
-                list="cuisine"
-                value={cuisine}
-                onChange={this.handleCuisine}
-              />
-              <datalist id="cuisine">
-                {mt.map((meal, index) => (
-                  <option key={index}>{meal}</option>
-                ))}
-              </datalist>
-            </div>
-          </div>
-
-          <div className="field">
-            <label class="label is-medium">Main Ingredient</label>
-            <div class="control">
-              <input
-                type="text"
-                list="main_ingredient"
-                value={main_ingredient}
-                onChange={this.handleMainIngredient}
-              />
-              <datalist id="main_ingredient">
-                {mt.map((ingredient, index) => (
-                  <option key={index}>{ingredient}</option>
-                ))}
-              </datalist>
-            </div>
-          </div>
-
-          <div className="field">
-            <label class="label is-medium">Source</label>
-            <div class="control">
-              <input
-                type="text"
-                list="source"
-                value={source}
-                onChange={this.handleSource}
-              />
-              <datalist id="source">
-                {mt.map((source, index) => (
-                  <option key={index}>{source}</option>
-                ))}
-              </datalist>
-            </div>
-          </div>
           <div className="field">
             <label className="label is-medium">Page</label>
             <div className="control">
@@ -178,6 +112,7 @@ class AddRecipeForm extends Component {
               />
             </div>
           </div>
+
           <div className="field">
             <label className="label is-medium">Link</label>
             <div className="control">

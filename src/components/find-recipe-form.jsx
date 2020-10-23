@@ -1,4 +1,13 @@
 import React, { Component } from "react";
+import {
+  Hero,
+  APIKeyForm,
+  RecipeName,
+  MealType,
+  MainIngredient,
+  Source,
+  Cuisine,
+} from "./base-form";
 
 class FindRecipeForm extends Component {
   constructor(props) {
@@ -39,7 +48,7 @@ class FindRecipeForm extends Component {
   };
 
   handleSubmit = (event) => {
-    alert(`${this.state.meal_type}`);
+    alert(`${this.state.main_ingredient}`);
     event.preventDefault();
   };
 
@@ -57,106 +66,30 @@ class FindRecipeForm extends Component {
 
     return (
       <div className="container">
-        <section class="hero hero is-info is-primary is-bold">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">Search for Existing Recipes</h1>
-            </div>
-          </div>
-        </section>
+        <Hero title="Search for Existing Recipes" />
 
         <form onSubmit={this.handleSubmit}>
-          <div className="field">
-            <label className="label is-medium">API Key</label>
-            <div className="control">
-              <input
-                class="input is-medium"
-                type="text"
-                value={api_key}
-                onChange={this.handleAPIKey}
-              />
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label is-medium">Recipe Name</label>
-            <div className="control">
-              <input
-                class="input is-medium"
-                type="text"
-                value={recipe_name}
-                onChange={this.handleRecipe}
-              />
-            </div>
-          </div>
-
-          <div className="field">
-            <label class="label is-medium">Meal Type</label>
-            <div class="control">
-              <input
-                type="text"
-                list="meal_type"
-                value={meal_type}
-                onChange={this.handleMeal}
-              />
-              <datalist id="meal_type">
-                {mt.map((meal, index) => (
-                  <option key={index}>{meal}</option>
-                ))}
-              </datalist>
-            </div>
-          </div>
-
-          <div className="field">
-            <label class="label is-medium">Cuisine</label>
-            <div class="control">
-              <input
-                type="text"
-                list="cuisine"
-                value={cuisine}
-                onChange={this.handleCuisine}
-              />
-              <datalist id="cuisine">
-                {mt.map((meal, index) => (
-                  <option key={index}>{meal}</option>
-                ))}
-              </datalist>
-            </div>
-          </div>
-
-          <div className="field">
-            <label class="label is-medium">Main Ingredient</label>
-            <div class="control">
-              <input
-                type="text"
-                list="main_ingredient"
-                value={main_ingredient}
-                onChange={this.handleMainIngredient}
-              />
-              <datalist id="main_ingredient">
-                {mt.map((ingredient, index) => (
-                  <option key={index}>{ingredient}</option>
-                ))}
-              </datalist>
-            </div>
-          </div>
-
-          <div className="field">
-            <label class="label is-medium">Source</label>
-            <div class="control">
-              <input
-                type="text"
-                list="source"
-                value={source}
-                onChange={this.handleSource}
-              />
-              <datalist id="source">
-                {mt.map((source, index) => (
-                  <option key={index}>{source}</option>
-                ))}
-              </datalist>
-            </div>
-          </div>
+          <APIKeyForm api_key={api_key} handleAPIKey={this.handleAPIKey} />
+          <RecipeName
+            recipe_name={recipe_name}
+            handleRecipe={this.handleRecipe}
+          />
+          <MealType
+            meal_type={meal_type}
+            handleMeal={this.handleMeal}
+            mt={mt}
+          />
+          <Cuisine
+            cuisine={cuisine}
+            handleCuisine={this.handleCuisine}
+            mt={mt}
+          />
+          <MainIngredient
+            main_ingredient={main_ingredient}
+            handleMainIngredient={this.handleMainIngredient}
+            mt={mt}
+          />
+          <Source source={source} handleSource={this.handleSource} mt={mt} />
 
           <div class="field is-grouped">
             <div class="control">
