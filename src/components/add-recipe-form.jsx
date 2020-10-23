@@ -62,6 +62,7 @@ class AddRecipeForm extends Component {
       page,
       link,
     } = this.state;
+
     const mt = ["A", "B"];
 
     return (
