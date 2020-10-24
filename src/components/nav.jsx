@@ -1,9 +1,7 @@
 import React from "react";
-import "../index.css";
-import "bulma/css/bulma.css";
 import { Link } from "react-router-dom";
 
-export default function Nav() {
+export default function Navbar() {
   return (
     <nav class="navbar is-light" role="navigation" aria-label="main navigation">
       <Link to="/">

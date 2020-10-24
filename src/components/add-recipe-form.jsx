@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import {
   Hero,
+  SubmitButton,
   APIKeyForm,
   RecipeName,
-  MealType,
-  MainIngredient,
-  Source,
-  Cuisine,
+  MealAndCuisine,
+  MainIngredientAndSource,
+  Page,
+  Link,
 } from "./base-form";
 
 class AddRecipeForm extends Component {
@@ -84,52 +85,23 @@ class AddRecipeForm extends Component {
             recipe_name={recipe_name}
             handleRecipe={this.handleRecipe}
           />
-          <MealType
+          <MealAndCuisine
             meal_type={meal_type}
             handleMeal={this.handleMeal}
-            mt={mt}
-          />
-          <Cuisine
             cuisine={cuisine}
             handleCuisine={this.handleCuisine}
             mt={mt}
           />
-          <MainIngredient
+          <MainIngredientAndSource
             main_ingredient={main_ingredient}
             handleMainIngredient={this.handleMainIngredient}
+            source={source}
+            handleSource={this.handleSource}
             mt={mt}
           />
-          <Source source={source} handleSource={this.handleSource} mt={mt} />
-
-          <div className="field">
-            <label className="label is-medium">Page</label>
-            <div className="control">
-              <input
-                class="input is-medium"
-                type="text"
-                value={page}
-                onChange={this.handlePage}
-              />
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label is-medium">Link</label>
-            <div className="control">
-              <input
-                class="input is-medium"
-                type="text"
-                value={link}
-                onChange={this.handleLink}
-              />
-            </div>
-          </div>
-
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button is-link is-medium">Submit</button>
-            </div>
-          </div>
+          <Page page={page} handlePage={this.handlePage} />
+          <Link link={link} handleLink={this.handleLink} />
+          <SubmitButton />
         </form>
       </div>
     );

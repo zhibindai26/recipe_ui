@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import {
   Hero,
+  SubmitButton,
   APIKeyForm,
   RecipeName,
-  MealType,
-  MainIngredient,
-  Source,
-  Cuisine,
+  MealAndCuisine,
+  MainIngredientAndSource,
 } from "./base-form";
 
 class FindRecipeForm extends Component {
@@ -66,7 +65,7 @@ class FindRecipeForm extends Component {
 
     return (
       <div className="container">
-        <Hero title="Search for Existing Recipes" />
+        <Hero title="Find Existing Recipes" />
 
         <form onSubmit={this.handleSubmit}>
           <APIKeyForm api_key={api_key} handleAPIKey={this.handleAPIKey} />
@@ -74,28 +73,21 @@ class FindRecipeForm extends Component {
             recipe_name={recipe_name}
             handleRecipe={this.handleRecipe}
           />
-          <MealType
+          <MealAndCuisine
             meal_type={meal_type}
             handleMeal={this.handleMeal}
-            mt={mt}
-          />
-          <Cuisine
             cuisine={cuisine}
             handleCuisine={this.handleCuisine}
             mt={mt}
           />
-          <MainIngredient
+          <MainIngredientAndSource
             main_ingredient={main_ingredient}
             handleMainIngredient={this.handleMainIngredient}
+            source={source}
+            handleSource={this.handleSource}
             mt={mt}
           />
-          <Source source={source} handleSource={this.handleSource} mt={mt} />
-
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button is-link is-medium">Submit</button>
-            </div>
-          </div>
+          <SubmitButton />
         </form>
       </div>
     );

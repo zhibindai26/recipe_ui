@@ -12,6 +12,16 @@ function Hero(props) {
   );
 }
 
+function SubmitButton(props) {
+  return (
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link is-medium">Submit</button>
+      </div>
+    </div>
+  );
+}
+
 function APIKeyForm(props) {
   return (
     <div className="field">
@@ -44,85 +54,119 @@ function RecipeName(props) {
   );
 }
 
-function MealType(props) {
+function MealAndCuisine(props) {
   return (
-    <div className="field">
-      <label class="label is-medium">Meal Type</label>
-      <div class="control">
-        <input
-          type="text"
-          list="meal_type"
-          value={props.meal_type}
-          onChange={props.handleMeal}
-        />
-        <datalist id="meal_type">
-          {props.mt.map((meal, index) => (
-            <option key={index}>{meal}</option>
-          ))}
-        </datalist>
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div className="field">
+          <label class="label is-medium">Meal Type</label>
+          <div class="control">
+            <input
+              class="input is-medium"
+              type="text"
+              list="meal_type"
+              value={props.meal_type}
+              onChange={props.handleMeal}
+            />
+            <datalist id="meal_type">
+              {props.mt.map((meal, index) => (
+                <option key={index}>{meal}</option>
+              ))}
+            </datalist>
+          </div>
+        </div>
+        <div className="field">
+          <label class="label is-medium">Cuisine</label>
+          <div class="control">
+            <input
+              type="text"
+              class="input is-medium"
+              list="cuisine"
+              value={props.cuisine}
+              onChange={props.handleCuisine}
+            />
+            <datalist id="cuisine">
+              {props.mt.map((meal, index) => (
+                <option key={index}>{meal}</option>
+              ))}
+            </datalist>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-function Cuisine(props) {
+function MainIngredientAndSource(props) {
   return (
-    <div className="field">
-      <label class="label is-medium">Cuisine</label>
-      <div class="control">
-        <input
-          type="text"
-          list="cuisine"
-          value={props.cuisine}
-          onChange={props.handleCuisine}
-        />
-        <datalist id="cuisine">
-          {props.mt.map((meal, index) => (
-            <option key={index}>{meal}</option>
-          ))}
-        </datalist>
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div className="field">
+          <label class="label is-medium">Main Ingredient</label>
+          <div class="control">
+            <input
+              type="text"
+              class="input is-medium"
+              list="main_ingredient"
+              value={props.main_ingredient}
+              onChange={props.handleMainIngredient}
+            />
+            <datalist id="main_ingredient">
+              {props.mt.map((ingredient, index) => (
+                <option key={index}>{ingredient}</option>
+              ))}
+            </datalist>
+          </div>
+        </div>
+        <div className="field">
+          <label className="label is-medium">Source</label>
+          <div className="control">
+            <input
+              type="text"
+              class="input is-medium"
+              list="source"
+              value={props.source}
+              onChange={props.handleSource}
+            />
+            <datalist id="source">
+              {props.mt.map((source, index) => (
+                <option key={index}>{source}</option>
+              ))}
+            </datalist>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-function MainIngredient(props) {
+function Page(props) {
   return (
     <div className="field">
-      <label class="label is-medium">Main Ingredient</label>
-      <div class="control">
+      <label className="label is-medium">Page</label>
+      <div className="control">
         <input
           type="text"
-          list="main_ingredient"
-          value={props.main_ingredient}
-          onChange={props.handleMainIngredient}
+          class="input is-medium"
+          value={props.page}
+          onChange={props.handlePage}
         />
-        <datalist id="main_ingredient">
-          {props.mt.map((ingredient, index) => (
-            <option key={index}>{ingredient}</option>
-          ))}
-        </datalist>
       </div>
     </div>
   );
 }
 
-function Source(props) {
+function Link(props) {
   return (
     <div className="field">
-      <label class="label is-medium">Source</label>
-      <div class="control">
+      <label className="label is-medium">Link</label>
+      <div className="control">
         <input
           type="text"
-          list="source"
-          value={props.source}
-          onChange={props.handleSource}
+          class="input is-medium"
+          value={props.link}
+          onChange={props.handleLink}
         />
-        <datalist id="source">
-          {props.mt.map((source, index) => (
-            <option key={index}>{source}</option>
-          ))}
-        </datalist>
       </div>
     </div>
   );
@@ -130,10 +174,11 @@ function Source(props) {
 
 export {
   Hero,
+  SubmitButton,
   APIKeyForm,
   RecipeName,
-  MealType,
-  Cuisine,
-  MainIngredient,
-  Source,
+  MealAndCuisine,
+  MainIngredientAndSource,
+  Page,
+  Link,
 };
