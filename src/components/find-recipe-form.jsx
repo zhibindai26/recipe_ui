@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {
   SubmitButton,
-  APIKeyForm,
+  EmailAddress,
   RecipeName,
   MealAndCuisine,
   MainIngredientAndSource,
@@ -13,7 +13,7 @@ class FindRecipeForm extends Component {
     super(props);
 
     this.state = {
-      api_key: "",
+      email_address: "",
       recipe_name: "",
       meal_type: "",
       cuisine: "",
@@ -22,8 +22,8 @@ class FindRecipeForm extends Component {
     };
   }
 
-  handleAPIKey = (event) => {
-    this.setState({ api_key: event.target.value });
+  handleEmailAddress = (event) => {
+    this.setState({ email_address: event.target.value });
   };
 
   handleRecipe = (event) => {
@@ -53,7 +53,7 @@ class FindRecipeForm extends Component {
 
   render() {
     const {
-      api_key,
+      email_address,
       recipe_name,
       meal_type,
       cuisine,
@@ -68,7 +68,7 @@ class FindRecipeForm extends Component {
         <Hero title="Find Existing Recipes" />
 
         <form onSubmit={this.handleSubmit}>
-          <APIKeyForm api_key={api_key} handleAPIKey={this.handleAPIKey} />
+          <EmailAddress email_address={email_address} handleEmailAddress={this.handleEmailAddress} />
           <RecipeName
             recipe_name={recipe_name}
             handleRecipe={this.handleRecipe}

@@ -1,6 +1,6 @@
 import React from "react";
 
-function SubmitButton(props) {
+function SubmitButton() {
   return (
     <div class="field is-grouped">
       <div class="control">
@@ -10,16 +10,16 @@ function SubmitButton(props) {
   );
 }
 
-function APIKeyForm(props) {
+function EmailAddress(props) {
   return (
     <div className="field">
-      <label className="label is-medium">API Key</label>
+      <label className="label is-medium">Email Address*</label>
       <div className="control">
         <input
           class="input is-medium"
           type="text"
-          value={props.api_key}
-          onChange={props.handleAPIKey}
+          value={props.email_address}
+          onChange={props.handleEmailAddress}
         />
       </div>
     </div>
@@ -162,7 +162,7 @@ function Link(props) {
 
 export {
   SubmitButton,
-  APIKeyForm,
+  EmailAddress,
   RecipeName,
   MealAndCuisine,
   MainIngredientAndSource,
