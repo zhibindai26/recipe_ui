@@ -1,7 +1,7 @@
 import React from "react";
-import "./App.css";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Navbar from "./components/nav";
+import Footer from "./components/footer";
 import Home from "./pages/Home";
 import FindRecipes from "./pages/find-recipes";
 import AddRecipe from "./pages/add-recipe";
@@ -18,6 +18,7 @@ function App() {
           <Route path="/add" component={AddRecipe} />
           <Route path="/recipes" component={RecipeList} />
         </Switch>
+        <Footer />
       </div>
     </Router>
   );

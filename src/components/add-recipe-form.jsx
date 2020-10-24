@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  Hero,
   SubmitButton,
   APIKeyForm,
   RecipeName,
@@ -9,6 +8,7 @@ import {
   Page,
   Link,
 } from "./base-form";
+import Hero from "./header";
 
 class AddRecipeForm extends Component {
   constructor(props) {

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import {
-  Hero,
   SubmitButton,
   APIKeyForm,
   RecipeName,
   MealAndCuisine,
   MainIngredientAndSource,
 } from "./base-form";
+import Hero from "./header";
 
 class FindRecipeForm extends Component {
   constructor(props) {

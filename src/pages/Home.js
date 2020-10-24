@@ -1,7 +1,6 @@
 import React from "react";
-import "../index.css";
 import "bulma/css/bulma.css";
-import { Hero } from "../components/base-form";
+import Hero from "../components/header";
 
 export default function Home() {
   return <Hero title="Recipe Finder!" />;
