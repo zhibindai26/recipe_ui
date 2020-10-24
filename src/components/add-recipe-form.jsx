@@ -26,38 +26,14 @@ class AddRecipeForm extends Component {
     };
   }
 
-  handleEmailAddress = (event) => {
-    this.setState({ email_address: event.target.value });
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   };
 
-  handleRecipe = (event) => {
-    this.setState({ recipe_name: event.target.value });
-  };
-
-  handleMeal = (event) => {
-    this.setState({ meal_type: event.target.value });
-  };
-
-  handleCuisine = (event) => {
-    this.setState({ cuisine: event.target.value });
-  };
-
-  handleMainIngredient = (event) => {
-    this.setState({ main_ingredient: event.target.value });
-  };
-
-  handleSource = (event) => {
-    this.setState({ source: event.target.value });
-  };
-
-  handlePage = (event) => {
-    this.setState({ page: event.target.value });
-  };
-  handleLink = (event) => {
-    this.setState({ link: event.target.value });
-  };
   handleSubmit = (event) => {
-    alert(`${this.state.cuisine}`);
+    console.log(this.state);
     event.preventDefault();
   };
 
@@ -80,27 +56,27 @@ class AddRecipeForm extends Component {
         <Hero title="Add a New Recipe to the Recipe Database" />
 
         <form onSubmit={this.handleSubmit}>
-          <EmailAddress email_address={email_address} handleEmailAddress={this.handleEmailAddress} />
+        <EmailAddress email_address={email_address} handleChange={this.handleChange} />
           <RecipeName
             recipe_name={recipe_name}
-            handleRecipe={this.handleRecipe}
+            handleChange={this.handleChange}
           />
           <MealAndCuisine
             meal_type={meal_type}
-            handleMeal={this.handleMeal}
+            handleMeal={this.handleChange}
             cuisine={cuisine}
-            handleCuisine={this.handleCuisine}
+            handleCuisine={this.handleChange}
             mt={mt}
           />
           <MainIngredientAndSource
             main_ingredient={main_ingredient}
-            handleMainIngredient={this.handleMainIngredient}
+            handleMainIngredient={this.handleChange}
             source={source}
-            handleSource={this.handleSource}
+            handleSource={this.handleChange}
             mt={mt}
           />
-          <Page page={page} handlePage={this.handlePage} />
-          <Link link={link} handleLink={this.handleLink} />
+          <Page page={page} handleChange={this.handleChange} />
+          <Link link={link} handleChange={this.handleChange} />
           <SubmitButton />
         </form>
       </div>

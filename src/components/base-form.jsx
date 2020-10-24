@@ -17,9 +17,10 @@ function EmailAddress(props) {
       <div className="control">
         <input
           class="input is-medium"
+          name="email_address"
           type="text"
-          value={props.email_address}
-          onChange={props.handleEmailAddress}
+          defaultValue={props.email_address}
+          onChange={props.handleChange}
         />
       </div>
     </div>
@@ -33,9 +34,10 @@ function RecipeName(props) {
       <div className="control">
         <input
           class="input is-medium"
+          name="recipe_name"
           type="text"
-          value={props.recipe_name}
-          onChange={props.handleRecipe}
+          defaultValue={props.recipe_name}
+          onChange={props.handleChange}
         />
       </div>
     </div>
@@ -51,9 +53,10 @@ function MealAndCuisine(props) {
           <div class="control">
             <input
               class="input is-medium"
+              name="meal_type"
               type="text"
               list="meal_type"
-              value={props.meal_type}
+              defaultValue={props.meal_type}
               onChange={props.handleMeal}
             />
             <datalist id="meal_type">
@@ -67,10 +70,11 @@ function MealAndCuisine(props) {
           <label class="label is-medium">Cuisine</label>
           <div class="control">
             <input
-              type="text"
               class="input is-medium"
+              name="cuisine"
+              type="text"
               list="cuisine"
-              value={props.cuisine}
+              defaultValue={props.cuisine}
               onChange={props.handleCuisine}
             />
             <datalist id="cuisine">
@@ -93,10 +97,11 @@ function MainIngredientAndSource(props) {
           <label class="label is-medium">Main Ingredient</label>
           <div class="control">
             <input
-              type="text"
               class="input is-medium"
+              name="main_ingredient"
+              type="text"
               list="main_ingredient"
-              value={props.main_ingredient}
+              defaultValue={props.main_ingredient}
               onChange={props.handleMainIngredient}
             />
             <datalist id="main_ingredient">
@@ -110,10 +115,11 @@ function MainIngredientAndSource(props) {
           <label className="label is-medium">Source</label>
           <div className="control">
             <input
-              type="text"
               class="input is-medium"
+              name="source"
+              type="text"
               list="source"
-              value={props.source}
+              defaultValue={props.source}
               onChange={props.handleSource}
             />
             <datalist id="source">
@@ -134,10 +140,11 @@ function Page(props) {
       <label className="label is-medium">Page</label>
       <div className="control">
         <input
-          type="text"
           class="input is-medium"
-          value={props.page}
-          onChange={props.handlePage}
+          name="page"
+          type="text"
+          defaultValue={props.page}
+          onChange={props.handleChange}
         />
       </div>
     </div>
@@ -150,10 +157,11 @@ function Link(props) {
       <label className="label is-medium">Link</label>
       <div className="control">
         <input
-          type="text"
           class="input is-medium"
-          value={props.link}
-          onChange={props.handleLink}
+          name="link"
+          type="text"
+          defaultValue={props.link}
+          onChange={props.handleChange}
         />
       </div>
     </div>
