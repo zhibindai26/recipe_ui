@@ -1,4 +1,20 @@
 import React from "react";
+import Hero from "./header";
+
+function Login(props) {
+  return (
+    <div className="container">
+      <Hero title="Please Enter Your Email Address" />
+      <form onSubmit={props.handleLogin}>
+        <EmailAddress
+          email_address={props.email_address}
+          handleChange={props.handleChange}
+        />
+        <SubmitButton />
+      </form>
+    </div>
+  );
+}
 
 function SubmitButton() {
   return (
@@ -169,8 +185,8 @@ function Link(props) {
 }
 
 export {
+  Login,
   SubmitButton,
-  EmailAddress,
   RecipeName,
   MealAndCuisine,
   MainIngredientAndSource,

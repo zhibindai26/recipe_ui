@@ -6,7 +6,6 @@ import Home from "./pages/Home";
 import FindRecipes from "./pages/find-recipes";
 import AddRecipe from "./pages/add-recipe";
 import RecipeList from "./pages/recipe-list";
-import GetCategories from './pages/get-recipe-categories';
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/email" component={GetCategories} />
           <Route path="/find" component={FindRecipes} />
           <Route path="/add" component={AddRecipe} />
           <Route path="/recipes" component={RecipeList} />
