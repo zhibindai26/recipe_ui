@@ -2,9 +2,9 @@ import React from "react";
 
 function SubmitButton() {
   return (
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-link is-medium">Submit</button>
+    <div className="field is-grouped">
+      <div className="control">
+        <button className="button is-link is-medium">Submit</button>
       </div>
     </div>
   );
@@ -16,7 +16,7 @@ function EmailAddress(props) {
       <label className="label is-medium">Email Address*</label>
       <div className="control">
         <input
-          class="input is-medium"
+          className="input is-medium"
           name="email_address"
           type="text"
           defaultValue={props.email_address}
@@ -33,7 +33,7 @@ function RecipeName(props) {
       <label className="label is-medium">Recipe Name</label>
       <div className="control">
         <input
-          class="input is-medium"
+          className="input is-medium"
           name="recipe_name"
           type="text"
           defaultValue={props.recipe_name}
@@ -46,13 +46,13 @@ function RecipeName(props) {
 
 function MealAndCuisine(props) {
   return (
-    <div class="field is-horizontal">
-      <div class="field-body">
+    <div className="field is-horizontal">
+      <div className="field-body">
         <div className="field">
-          <label class="label is-medium">Meal Type</label>
-          <div class="control">
+          <label className="label is-medium">Meal Type</label>
+          <div className="control">
             <input
-              class="input is-medium"
+              className="input is-medium"
               name="meal_type"
               type="text"
               list="meal_type"
@@ -67,10 +67,10 @@ function MealAndCuisine(props) {
           </div>
         </div>
         <div className="field">
-          <label class="label is-medium">Cuisine</label>
-          <div class="control">
+          <label className="label is-medium">Cuisine</label>
+          <div className="control">
             <input
-              class="input is-medium"
+              className="input is-medium"
               name="cuisine"
               type="text"
               list="cuisine"
@@ -91,13 +91,13 @@ function MealAndCuisine(props) {
 
 function MainIngredientAndSource(props) {
   return (
-    <div class="field is-horizontal">
-      <div class="field-body">
+    <div className="field is-horizontal">
+      <div className="field-body">
         <div className="field">
-          <label class="label is-medium">Main Ingredient</label>
-          <div class="control">
+          <label className="label is-medium">Main Ingredient</label>
+          <div className="control">
             <input
-              class="input is-medium"
+              className="input is-medium"
               name="main_ingredient"
               type="text"
               list="main_ingredient"
@@ -115,7 +115,7 @@ function MainIngredientAndSource(props) {
           <label className="label is-medium">Source</label>
           <div className="control">
             <input
-              class="input is-medium"
+              className="input is-medium"
               name="source"
               type="text"
               list="source"
@@ -140,7 +140,7 @@ function Page(props) {
       <label className="label is-medium">Page</label>
       <div className="control">
         <input
-          class="input is-medium"
+          className="input is-medium"
           name="page"
           type="text"
           defaultValue={props.page}
@@ -157,7 +157,7 @@ function Link(props) {
       <label className="label is-medium">Link</label>
       <div className="control">
         <input
-          class="input is-medium"
+          className="input is-medium"
           name="link"
           type="text"
           defaultValue={props.link}

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   SubmitButton,
-  EmailAddress,
   RecipeName,
   MealAndCuisine,
   MainIngredientAndSource,
@@ -13,7 +12,6 @@ class FindRecipeForm extends Component {
     super(props);
 
     this.state = {
-      email_address: "",
       recipe_name: "",
       meal_type: "",
       cuisine: "",
@@ -35,7 +33,6 @@ class FindRecipeForm extends Component {
 
   render() {
     const {
-      email_address,
       recipe_name,
       meal_type,
       cuisine,
@@ -50,7 +47,6 @@ class FindRecipeForm extends Component {
         <Hero title="Find Existing Recipes" />
 
         <form onSubmit={this.handleSubmit}>
-          <EmailAddress email_address={email_address} handleChange={this.handleChange} />
           <RecipeName
             recipe_name={recipe_name}
             handleChange={this.handleChange}
