@@ -3,8 +3,8 @@ import {
   Login,
   SubmitButton,
   RecipeName,
-  MealAndCuisine,
-  MainIngredientAndSource,
+  MealAndCuisineReadOnly,
+  MainIngredientAndSourceReadOnly,
 } from "./base-form";
 import Hero from "./header";
 
@@ -24,9 +24,12 @@ class FindRecipeForm extends Component {
   }
 
   handleLogin = (event) => {
-    this.setState({
-      login: true,
-    });
+    let email = this.state.email_address.trim();
+    if (email) {
+      this.setState({
+        login: true,
+      });
+    }
     event.preventDefault();
   };
 
@@ -52,7 +55,7 @@ class FindRecipeForm extends Component {
       source,
     } = this.state;
 
-    const mt = ["A", "B"];
+    const mt = ["A Test Value", "B Test Value"];
 
     if (login) {
       return (
@@ -64,14 +67,14 @@ class FindRecipeForm extends Component {
               recipe_name={recipe_name}
               handleChange={this.handleChange}
             />
-            <MealAndCuisine
+            <MealAndCuisineReadOnly
               meal_type={meal_type}
               handleMeal={this.handleChange}
               cuisine={cuisine}
               handleCuisine={this.handleChange}
               mt={mt}
             />
-            <MainIngredientAndSource
+            <MainIngredientAndSourceReadOnly
               main_ingredient={main_ingredient}
               handleMainIngredient={this.handleChange}
               source={source}

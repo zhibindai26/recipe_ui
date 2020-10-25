@@ -94,8 +94,8 @@ function MealAndCuisine(props) {
               onChange={props.handleCuisine}
             />
             <datalist id="cuisine">
-              {props.mt.map((meal, index) => (
-                <option key={index}>{meal}</option>
+              {props.mt.map((cuisine, index) => (
+                <option key={index}>{cuisine}</option>
               ))}
             </datalist>
           </div>
@@ -184,12 +184,82 @@ function Link(props) {
   );
 }
 
+function MealAndCuisineReadOnly(props) {
+  return (
+    <div className="field is-horizontal">
+      <div className="field-body">
+        <div className="field">
+          <label className="label is-medium">Meal Type</label>
+          <div className="control">
+            <div className="select" name="meal_type">
+              <select>
+                {props.mt.map((meal, index) => (
+                  <option key={index}>{meal}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className="field">
+          <label className="label is-medium">Cuisine</label>
+          <div className="control">
+            <div className="select" name="cuisine">
+              <select>
+                {props.mt.map((cuisine, index) => (
+                  <option key={index}>{cuisine}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MainIngredientAndSourceReadOnly(props) {
+  return (
+    <div className="field is-horizontal">
+      <div className="field-body">
+        <div className="field">
+          <label className="label is-medium">Main Ingredient</label>
+          <div className="control">
+            <div className="select" name="main_ingredient">
+              <select>
+                {props.mt.map((ingredient, index) => (
+                  <option key={index}>{ingredient}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className="field">
+          <label className="label is-medium">Source</label>
+          <div className="control">
+            <div className="select" name="source">
+              <select>
+                {props.mt.map((source, index) => (
+                  <option key={index}>{source}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export {
   Login,
   SubmitButton,
   RecipeName,
   MealAndCuisine,
   MainIngredientAndSource,
+  MealAndCuisineReadOnly,
+  MainIngredientAndSourceReadOnly,
   Page,
   Link,
 };
