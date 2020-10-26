@@ -9,7 +9,7 @@ import {
 } from "./base-form";
 import Hero from "./header";
 
-class FindRecipeForm extends Component {
+class FindRecipes extends Component {
   constructor(props) {
     super(props);
 
@@ -103,4 +103,4 @@ class FindRecipeForm extends Component {
   }
 }
 
-export default FindRecipeForm;
+export default FindRecipes;

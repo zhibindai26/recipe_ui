@@ -3,9 +3,9 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Navbar from "./components/nav";
 import Footer from "./components/footer";
 import Home from "./pages/Home";
-import FindRecipes from "./pages/find-recipes";
-import AddRecipe from "./pages/add-recipe";
-import GetAllRecipes from "./pages/get-all-recipes";
+import AddRecipes from "./components/add-recipes";
+import GetAllRecipes from "./components/get-all-recipes";
+import FindRecipes from "./components/find-recipes";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/find" component={FindRecipes} />
-          <Route path="/add" component={AddRecipe} />
+          <Route path="/add" component={AddRecipes} />
           <Route path="/all_recipes" component={GetAllRecipes} />
         </Switch>
         <Footer />
