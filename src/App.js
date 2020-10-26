@@ -5,7 +5,6 @@ import Footer from "./components/footer";
 import Home from "./pages/Home";
 import FindRecipes from "./pages/find-recipes";
 import AddRecipe from "./pages/add-recipe";
-import RecipeList from "./pages/recipe-list";
 
 function App() {
   return (
@@ -16,7 +15,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/find" component={FindRecipes} />
           <Route path="/add" component={AddRecipe} />
-          <Route path="/recipes" component={RecipeList} />
+          {/* <Route path="/all_recipes" component={} /> */}
         </Switch>
         <Footer />
       </div>

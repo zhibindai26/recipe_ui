@@ -192,7 +192,11 @@ function MealAndCuisineReadOnly(props) {
           <label className="label is-medium">Meal Type</label>
           <div className="control">
             <div className="select" name="meal_type">
-              <select>
+              <select
+                name="meal_type"
+                defaultValue={props.meal_type}
+                onChange={props.handleMeal}
+              >
                 {props.mt.map((meal, index) => (
                   <option key={index}>{meal}</option>
                 ))}
@@ -205,7 +209,11 @@ function MealAndCuisineReadOnly(props) {
           <label className="label is-medium">Cuisine</label>
           <div className="control">
             <div className="select" name="cuisine">
-              <select>
+              <select
+                name="cuisine"
+                defaultValue={props.cuisine}
+                onChange={props.handleCuisine}
+              >
                 {props.mt.map((cuisine, index) => (
                   <option key={index}>{cuisine}</option>
                 ))}
@@ -226,7 +234,11 @@ function MainIngredientAndSourceReadOnly(props) {
           <label className="label is-medium">Main Ingredient</label>
           <div className="control">
             <div className="select" name="main_ingredient">
-              <select>
+              <select
+                name="main_ingredient"
+                defaultValue={props.main_ingredient}
+                onChange={props.handleMainIngredient}
+              >
                 {props.mt.map((ingredient, index) => (
                   <option key={index}>{ingredient}</option>
                 ))}
@@ -239,13 +251,38 @@ function MainIngredientAndSourceReadOnly(props) {
           <label className="label is-medium">Source</label>
           <div className="control">
             <div className="select" name="source">
-              <select>
+              <select
+                name="source"
+                defaultValue={props.source}
+                onChange={props.handleSource}
+              >
                 {props.mt.map((source, index) => (
                   <option key={index}>{source}</option>
                 ))}
               </select>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Sample(props) {
+  return (
+    <div className="field">
+      <label className="label is-medium">Sample</label>
+      <div className="control">
+        <div className="select" name="sample">
+          <select
+            name="sample"
+            defaultValue={props.sample}
+            onChange={props.handleSample}
+          >
+            {Array.from({ length: 10 }, (value, index) => (
+              <option key={index}>{index + 1}</option>
+            ))}
+          </select>
         </div>
       </div>
     </div>
@@ -262,4 +299,5 @@ export {
   MainIngredientAndSourceReadOnly,
   Page,
   Link,
+  Sample,
 };

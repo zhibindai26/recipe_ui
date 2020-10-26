@@ -5,6 +5,7 @@ import {
   RecipeName,
   MealAndCuisineReadOnly,
   MainIngredientAndSourceReadOnly,
+  Sample,
 } from "./base-form";
 import Hero from "./header";
 
@@ -20,6 +21,7 @@ class FindRecipeForm extends Component {
       cuisine: "",
       main_ingredient: "",
       source: "",
+      sample: 1,
     };
   }
 
@@ -53,9 +55,10 @@ class FindRecipeForm extends Component {
       cuisine,
       main_ingredient,
       source,
+      sample,
     } = this.state;
 
-    const mt = ["A Test Value", "B Test Value"];
+    const mt = ["", "A Test Value", "B Test Value"];
 
     if (login) {
       return (
@@ -81,6 +84,7 @@ class FindRecipeForm extends Component {
               handleSource={this.handleChange}
               mt={mt}
             />
+            <Sample sample={sample} handleSample={this.handleChange} />
             <SubmitButton />
           </form>
         </div>
