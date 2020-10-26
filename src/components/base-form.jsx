@@ -43,16 +43,16 @@ function EmailAddress(props) {
   );
 }
 
-function RecipeName(props) {
+function TextInputField(props) {
   return (
     <div className="field">
-      <label className="label is-medium">Recipe Name</label>
+      <label className="label is-medium">{props.fieldName}</label>
       <div className="control">
         <input
           className="input is-medium"
-          name="recipe_name"
+          name={props.name}
           type="text"
-          defaultValue={props.recipe_name}
+          defaultValue={props.defaultValue}
           onChange={props.handleChange}
         />
       </div>
@@ -150,40 +150,6 @@ function MainIngredientAndSource(props) {
   );
 }
 
-function Page(props) {
-  return (
-    <div className="field">
-      <label className="label is-medium">Page</label>
-      <div className="control">
-        <input
-          className="input is-medium"
-          name="page"
-          type="text"
-          defaultValue={props.page}
-          onChange={props.handleChange}
-        />
-      </div>
-    </div>
-  );
-}
-
-function Link(props) {
-  return (
-    <div className="field">
-      <label className="label is-medium">Link</label>
-      <div className="control">
-        <input
-          className="input is-medium"
-          name="link"
-          type="text"
-          defaultValue={props.link}
-          onChange={props.handleChange}
-        />
-      </div>
-    </div>
-  );
-}
-
 function MealAndCuisineReadOnly(props) {
   return (
     <div className="field is-horizontal">
@@ -271,7 +237,7 @@ function MainIngredientAndSourceReadOnly(props) {
 function Sample(props) {
   return (
     <div className="field">
-      <label className="label is-medium">Sample</label>
+      <label className="label is-medium">Number of Recipes to Return</label>
       <div className="control">
         <div className="select" name="sample">
           <select
@@ -292,12 +258,10 @@ function Sample(props) {
 export {
   Login,
   SubmitButton,
-  RecipeName,
+  TextInputField,
   MealAndCuisine,
   MainIngredientAndSource,
   MealAndCuisineReadOnly,
   MainIngredientAndSourceReadOnly,
-  Page,
-  Link,
   Sample,
 };

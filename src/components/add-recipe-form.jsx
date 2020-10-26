@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import {
   Login,
   SubmitButton,
-  RecipeName,
+  TextInputField,
   MealAndCuisine,
   MainIngredientAndSource,
-  Page,
-  Link,
 } from "./base-form";
 import Hero from "./header";
 
@@ -17,7 +15,6 @@ class AddRecipeForm extends Component {
     this.state = {
       login: false,
       email_address: "",
-      api_key: "",
       recipe_name: "",
       meal_type: "",
       cuisine: "",
@@ -67,8 +64,10 @@ class AddRecipeForm extends Component {
           <Hero title="Add a New Recipe to the Recipe Database" />
 
           <form onSubmit={this.handleSubmit}>
-            <RecipeName
-              recipe_name={recipe_name}
+            <TextInputField
+              fieldName="Recipe Name"
+              name="recipe_name"
+              defaultValue={recipe_name}
               handleChange={this.handleChange}
             />
             <MealAndCuisine
@@ -85,8 +84,18 @@ class AddRecipeForm extends Component {
               handleSource={this.handleChange}
               mt={mt}
             />
-            <Page page={page} handleChange={this.handleChange} />
-            <Link link={link} handleChange={this.handleChange} />
+            <TextInputField
+              fieldName="Page"
+              name="page"
+              defaultValue={page}
+              handleChange={this.handleChange}
+            />
+            <TextInputField
+              fieldName="Link"
+              name="link"
+              defaultValue={link}
+              handleChange={this.handleChange}
+            />
             <SubmitButton />
           </form>
         </div>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
   Login,
   SubmitButton,
-  RecipeName,
+  TextInputField,
   MealAndCuisineReadOnly,
   MainIngredientAndSourceReadOnly,
   Sample,
@@ -66,8 +66,10 @@ class FindRecipeForm extends Component {
           <Hero title="Find Existing Recipes" />
 
           <form onSubmit={this.handleSubmit}>
-            <RecipeName
-              recipe_name={recipe_name}
+            <TextInputField
+              fieldName="Recipe Name"
+              name="recipe_name"
+              defaultValue={recipe_name}
               handleChange={this.handleChange}
             />
             <MealAndCuisineReadOnly
