@@ -6,8 +6,10 @@ function Login(props) {
     <div className="container">
       <Hero title="Please Enter Your Email Address" />
       <form onSubmit={props.handleLogin}>
-        <EmailAddress
-          email_address={props.email_address}
+        <TextInputField
+          fieldName="Email Address*"
+          name="email_address"
+          defaultValue={props.email_address}
           handleChange={props.handleChange}
         />
         <SubmitButton />
@@ -21,23 +23,6 @@ function SubmitButton() {
     <div className="field is-grouped">
       <div className="control">
         <button className="button is-link is-medium">Submit</button>
-      </div>
-    </div>
-  );
-}
-
-function EmailAddress(props) {
-  return (
-    <div className="field">
-      <label className="label is-medium">Email Address*</label>
-      <div className="control">
-        <input
-          className="input is-medium"
-          name="email_address"
-          type="text"
-          defaultValue={props.email_address}
-          onChange={props.handleChange}
-        />
       </div>
     </div>
   );

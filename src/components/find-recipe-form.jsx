@@ -96,7 +96,7 @@ class FindRecipeForm extends Component {
     return (
       <Login
         handleLogin={this.handleLogin}
-        email_address={email_address}
+        defaultValue={email_address}
         handleChange={this.handleChange}
       />
     );

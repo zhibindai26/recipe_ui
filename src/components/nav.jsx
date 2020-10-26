@@ -17,6 +17,9 @@ export default function Navbar() {
       <Link to="/add">
         <a className="navbar-item">Add Recipe</a>
       </Link>
+      <Link to="/all_recipes">
+        <a className="navbar-item">All Recipes</a>
+      </Link>
     </nav>
   );
 }
