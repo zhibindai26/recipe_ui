@@ -3,8 +3,7 @@ import {
   Login,
   SubmitButton,
   TextInputField,
-  MealAndCuisine,
-  MainIngredientAndSource,
+  InputAndListField,
 } from "./base-form";
 import Hero from "./header";
 
@@ -26,9 +25,12 @@ class AddRecipes extends Component {
   }
 
   handleLogin = (event) => {
-    this.setState({
-      login: true,
-    });
+    let email = this.state.email_address.trim();
+    if (email) {
+      this.setState({
+        login: true,
+      });
+    }
     event.preventDefault();
   };
 
@@ -70,18 +72,26 @@ class AddRecipes extends Component {
               defaultValue={recipe_name}
               handleChange={this.handleChange}
             />
-            <MealAndCuisine
-              meal_type={meal_type}
-              handleMeal={this.handleChange}
-              cuisine={cuisine}
-              handleCuisine={this.handleChange}
+            <InputAndListField
+              firstFieldName="Meal Type"
+              firstName="meal_type"
+              firstField={meal_type}
+              handleFirstField={this.handleChange}
+              secondFieldName="Cuisine"
+              secondName="cuisine"
+              secondField={cuisine}
+              handleSecondField={this.handleChange}
               mt={mt}
             />
-            <MainIngredientAndSource
-              main_ingredient={main_ingredient}
-              handleMainIngredient={this.handleChange}
-              source={source}
-              handleSource={this.handleChange}
+            <InputAndListField
+              firstFieldName="Main Ingredient"
+              firstName="main_ingredient"
+              firstField={main_ingredient}
+              handleFirstField={this.handleChange}
+              secondFieldName="Source"
+              secondName="source"
+              secondField={source}
+              handleSecondField={this.handleChange}
               mt={mt}
             />
             <TextInputField

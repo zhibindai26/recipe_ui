@@ -3,8 +3,7 @@ import {
   Login,
   SubmitButton,
   TextInputField,
-  MealAndCuisineReadOnly,
-  MainIngredientAndSourceReadOnly,
+  InputAndListFieldReadOnly,
   Sample,
 } from "./base-form";
 import Hero from "./header";
@@ -14,8 +13,8 @@ class FindRecipes extends Component {
     super(props);
 
     this.state = {
-      email_address: "",
       login: false,
+      email_address: "",
       recipe_name: "",
       meal_type: "",
       cuisine: "",
@@ -72,18 +71,26 @@ class FindRecipes extends Component {
               defaultValue={recipe_name}
               handleChange={this.handleChange}
             />
-            <MealAndCuisineReadOnly
-              meal_type={meal_type}
-              handleMeal={this.handleChange}
-              cuisine={cuisine}
-              handleCuisine={this.handleChange}
+            <InputAndListFieldReadOnly
+              firstFieldName="Meal Type"
+              firstName="meal_type"
+              firstField={meal_type}
+              handleFirstField={this.handleChange}
+              secondFieldName="Cuisine"
+              secondName="cuisine"
+              secondField={cuisine}
+              handleSecondField={this.handleChange}
               mt={mt}
             />
-            <MainIngredientAndSourceReadOnly
-              main_ingredient={main_ingredient}
-              handleMainIngredient={this.handleChange}
-              source={source}
-              handleSource={this.handleChange}
+            <InputAndListFieldReadOnly
+              firstFieldName="Main Ingredient"
+              firstName="main_ingredient"
+              firstField={main_ingredient}
+              handleFirstField={this.handleChange}
+              secondFieldName="Source"
+              secondName="source"
+              secondField={source}
+              handleSecondField={this.handleChange}
               mt={mt}
             />
             <Sample sample={sample} handleSample={this.handleChange} />
