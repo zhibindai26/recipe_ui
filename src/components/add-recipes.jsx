@@ -6,31 +6,34 @@ import {
   InputAndListField,
 } from "./base-form";
 import Hero from "./header";
+import { initialState } from "../constants/constants";
 
 class AddRecipes extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      login: false,
-      email_address: "",
-      recipe_name: "",
-      meal_type: "",
-      cuisine: "",
-      main_ingredient: "",
-      source: "",
-      page: "",
-      link: "",
-    };
+    this.state = initialState;
   }
+
+  validate = (value) => {
+    if (!value) {
+      this.setState({ loginError: "Invalid Login" });
+      return false;
+    }
+    return true;
+  };
 
   handleLogin = (event) => {
     let email = this.state.email_address.trim();
-    if (email) {
+    const isValid = this.validate(email);
+    if (isValid) {
       this.setState({
         login: true,
       });
+      console.log(this.state);
+      this.setState({ initialState });
     }
+
     event.preventDefault();
   };
 
@@ -48,6 +51,7 @@ class AddRecipes extends Component {
   render() {
     const {
       login,
+      loginError,
       email_address,
       recipe_name,
       meal_type,
@@ -116,6 +120,7 @@ class AddRecipes extends Component {
         handleLogin={this.handleLogin}
         email_address={email_address}
         handleChange={this.handleChange}
+        loginError={loginError}
       />
     );
   }

@@ -12,6 +12,7 @@ function Login(props) {
           defaultValue={props.email_address}
           handleChange={props.handleChange}
         />
+        <div>{props.loginError}</div>
         <SubmitButton />
       </form>
     </div>
