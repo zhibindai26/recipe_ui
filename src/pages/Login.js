@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "bulma/css/bulma.css";
 import { Login } from "../components/base-form";
 import FindRecipes from "../components/find-recipes";
 import AddRecipes from "../components/add-recipes";
@@ -31,7 +30,6 @@ class LoginEmail extends Component {
       this.setState({
         login: true,
       });
-      console.log(this.state);
     }
     event.preventDefault();
   };
@@ -51,7 +49,7 @@ class LoginEmail extends Component {
     const { login, email_address, loginError } = this.state;
 
     if (login) {
-      console.log(this.props.next_page);
+      // make API call and pass in data to components
       if (this.props.next_page === "find") {
         return <FindRecipes />;
       } else if (this.props.next_page === "add") {

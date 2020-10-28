@@ -5,7 +5,7 @@ import {
   InputAndListFieldReadOnly,
   Sample,
 } from "./base-form";
-import Hero from "./header";
+import { Hero } from "./basic-page";
 import { initialState } from "../constants/constants";
 
 class FindRecipes extends Component {

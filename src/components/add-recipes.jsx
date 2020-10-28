@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { SubmitButton, TextInputField, InputAndListField } from "./base-form";
-import Hero from "./header";
+import { Hero } from "./basic-page";
 import { initialState } from "../constants/constants";
 
 class AddRecipes extends Component {
@@ -9,6 +9,8 @@ class AddRecipes extends Component {
 
     this.state = initialState;
   }
+
+  // form validation for recipe name, meal type, source
 
   handleChange = (event) => {
     this.setState({

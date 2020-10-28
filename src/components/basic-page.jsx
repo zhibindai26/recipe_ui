@@ -1,7 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+function Hero(props) {
+  return (
+    <section className="hero is-info is-primary is-bold">
+      <div className="hero-body">
+        <div className="container">
+          <h1 className="title">{props.title}</h1>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Navbar() {
   return (
     <nav
       className="navbar is-light"
@@ -23,3 +35,13 @@ export default function Navbar() {
     </nav>
   );
 }
+
+function Footer() {
+  return (
+    <section className="section">
+      <div className="container"></div>
+    </section>
+  );
+}
+
+export { Hero, Navbar, Footer };

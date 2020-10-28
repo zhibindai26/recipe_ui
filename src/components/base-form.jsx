@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "./header";
+import { Hero } from "./basic-page";
 
 function Login(props) {
   return (

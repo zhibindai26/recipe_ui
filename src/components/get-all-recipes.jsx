@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Hero from "../components/header";
+import { Hero } from "./basic-page";
 
 class GetAllRecipes extends Component {
   constructor(props) {

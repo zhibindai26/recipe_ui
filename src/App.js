@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import Navbar from "./components/nav";
-import Footer from "./components/footer";
+import { Navbar, Footer } from "./components/basic-page";
 import Home from "./pages/Home";
 import LoginEmail from "./pages/Login";
 
