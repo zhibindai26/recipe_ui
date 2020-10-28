@@ -1,7 +1,4 @@
 const initialState = {
-  login: false,
-  loginError: "",
-  email_address: "",
   recipe_name: "",
   meal_type: "",
   cuisine: "",
@@ -12,12 +9,4 @@ const initialState = {
   sample: 1,
 };
 
-function validate(value) {
-  if (!value) {
-    this.setState({ loginError: "Invalid Login" });
-    return false;
-  }
-  return true;
-}
-
-export { initialState, validate };
+export { initialState };

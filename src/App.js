@@ -3,9 +3,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Navbar from "./components/nav";
 import Footer from "./components/footer";
 import Home from "./pages/Home";
-import AddRecipes from "./components/add-recipes";
-import GetAllRecipes from "./components/get-all-recipes";
-import FindRecipes from "./components/find-recipes";
+import LoginEmail from "./pages/Login";
 
 function App() {
   return (
@@ -14,9 +12,20 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/find" component={FindRecipes} />
-          <Route path="/add" component={AddRecipes} />
-          <Route path="/all_recipes" component={GetAllRecipes} />
+          <Route
+            path="/find"
+            render={(props) => <LoginEmail {...props} next_page="find" />}
+          />
+          <Route
+            path="/add"
+            render={(props) => <LoginEmail {...props} next_page="add" />}
+          />
+          <Route
+            path="/all_recipes"
+            render={(props) => (
+              <LoginEmail {...props} next_page="all_recipes" />
+            )}
+          />
         </Switch>
         <Footer />
       </div>

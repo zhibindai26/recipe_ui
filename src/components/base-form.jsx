@@ -12,7 +12,9 @@ function Login(props) {
           defaultValue={props.email_address}
           handleChange={props.handleChange}
         />
-        <div>{props.loginError}</div>
+        <div className="container">
+          <h1 className="title is-4 has-text-danger">{props.loginError}</h1>
+        </div>
         <SubmitButton />
       </form>
     </div>
