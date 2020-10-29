@@ -11,13 +11,13 @@ class LoginEmail extends Component {
     this.state = {
       login: false,
       email_address: "",
-      loginError: "",
+      login_error: "",
     };
   }
 
   validate = (value) => {
     if (!value) {
-      this.setState({ loginError: "Invalid login, please try again." });
+      this.setState({ login_error: "Invalid login, please try again." });
       return false;
     }
     return true;
@@ -40,13 +40,8 @@ class LoginEmail extends Component {
     });
   };
 
-  handleSubmit = (event) => {
-    console.log(this.state);
-    event.preventDefault();
-  };
-
   render() {
-    const { login, email_address, loginError } = this.state;
+    const { login, email_address, login_error } = this.state;
 
     if (login) {
       // make API call and pass in data to components
@@ -64,7 +59,7 @@ class LoginEmail extends Component {
         handleLogin={this.handleLogin}
         defaultValue={email_address}
         handleChange={this.handleChange}
-        loginError={loginError}
+        loginError={login_error}
       />
     );
   }

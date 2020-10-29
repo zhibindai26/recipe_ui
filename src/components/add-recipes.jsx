@@ -1,7 +1,19 @@
 import React, { Component } from "react";
 import { SubmitButton, TextInputField, InputAndListField } from "./base-form";
 import { Hero } from "./basic-page";
-import { initialState } from "../constants/constants";
+
+const initialState = {
+  recipe_name: "",
+  meal_type: "",
+  cuisine: "",
+  main_ingredient: "",
+  source: "",
+  page: "",
+  link: "",
+  recipe_name_error: "",
+  meal_type_error: "",
+  source_error: "",
+};
 
 class AddRecipes extends Component {
   constructor(props) {
@@ -10,7 +22,40 @@ class AddRecipes extends Component {
     this.state = initialState;
   }
 
+  validate = (value, field, fieldDisplay) => {
+    if (!value) {
+      this.setState({ [field]: `${fieldDisplay} cannot be left blank.` });
+      return false;
+    }
+    return true;
+  };
+
   // form validation for recipe name, meal type, source
+  handleValidation = (event) => {
+    let recipe = this.state.recipe_name.trim();
+    let meal = this.state.meal_type.trim();
+    let source = this.state.source.trim();
+
+    const recipeIsValid = this.validate(
+      recipe,
+      "recipe_name_error",
+      "Recipe Name"
+    );
+    const mealIsValid = this.validate(meal, "meal_type_error", "Meal Type");
+    const sourceIsValid = this.validate(source, "source_error", "Source");
+
+    if (recipeIsValid && sourceIsValid && mealIsValid) {
+      this.setState({
+        recipe_name_error: "",
+        meal_type_error: "",
+        source_error: "",
+      });
+      console.log(this.state);
+      return true;
+    }
+    event.preventDefault();
+    return false;
+  };
 
   handleChange = (event) => {
     this.setState({
@@ -19,8 +64,14 @@ class AddRecipes extends Component {
   };
 
   handleSubmit = (event) => {
-    console.log(this.state);
-    event.preventDefault();
+    let readyToSubmit = this.handleValidation(event);
+
+    if (readyToSubmit) {
+      console.log(this.state);
+      event.preventDefault();
+      // API POST request
+      // Display result message
+    }
   };
 
   render() {
@@ -32,6 +83,9 @@ class AddRecipes extends Component {
       source,
       page,
       link,
+      recipe_name_error,
+      meal_type_error,
+      source_error,
     } = this.state;
 
     const mt = ["A", "B"];
@@ -46,12 +100,14 @@ class AddRecipes extends Component {
             name="recipe_name"
             defaultValue={recipe_name}
             handleChange={this.handleChange}
+            formError={recipe_name_error}
           />
           <InputAndListField
             firstFieldName="Meal Type"
             firstName="meal_type"
             firstField={meal_type}
             handleFirstField={this.handleChange}
+            formErrorOne={meal_type_error}
             secondFieldName="Cuisine"
             secondName="cuisine"
             secondField={cuisine}
@@ -67,6 +123,7 @@ class AddRecipes extends Component {
             secondName="source"
             secondField={source}
             handleSecondField={this.handleChange}
+            formErrorTwo={source_error}
             mt={mt}
           />
           <TextInputField

@@ -6,7 +6,15 @@ import {
   Sample,
 } from "./base-form";
 import { Hero } from "./basic-page";
-import { initialState } from "../constants/constants";
+
+const initialState = {
+  recipe_name: "",
+  meal_type: "",
+  cuisine: "",
+  main_ingredient: "",
+  source: "",
+  sample: 1,
+};
 
 class FindRecipes extends Component {
   constructor(props) {

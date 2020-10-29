@@ -12,9 +12,7 @@ function Login(props) {
           defaultValue={props.email_address}
           handleChange={props.handleChange}
         />
-        <div className="container">
-          <h1 className="title is-4 has-text-danger">{props.loginError}</h1>
-        </div>
+        <FormError formError={props.loginError} />
         <SubmitButton />
       </form>
     </div>
@@ -31,6 +29,15 @@ function SubmitButton() {
   );
 }
 
+function FormError(props) {
+  return (
+    <div className="container">
+      <h1 className="subtitle is-4 has-text-danger">{props.formError}</h1>
+      <p></p>
+    </div>
+  );
+}
+
 function TextInputField(props) {
   return (
     <div className="field">
@@ -43,6 +50,7 @@ function TextInputField(props) {
           defaultValue={props.defaultValue}
           onChange={props.handleChange}
         />
+        <FormError formError={props.formError} />
       </div>
     </div>
   );
@@ -68,6 +76,7 @@ function InputAndListField(props) {
                 <option key={index}>{i}</option>
               ))}
             </datalist>
+            <FormError formError={props.formErrorOne} />
           </div>
         </div>
         <div className="field">
@@ -86,6 +95,7 @@ function InputAndListField(props) {
                 <option key={index}>{i}</option>
               ))}
             </datalist>
+            <FormError formError={props.formErrorTwo} />
           </div>
         </div>
       </div>
