@@ -46,11 +46,11 @@ class LoginEmail extends Component {
     if (login) {
       // make API call and pass in data to components
       if (this.props.next_page === "find") {
-        return <FindRecipes />;
+        return <FindRecipes email_address={email_address} />;
       } else if (this.props.next_page === "add") {
-        return <AddRecipes />;
+        return <AddRecipes email_address={email_address} />;
       } else if (this.props.next_page === "all_recipes") {
-        return <GetAllRecipes />;
+        return <GetAllRecipes email_address={email_address} />;
       }
     }
 

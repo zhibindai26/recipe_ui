@@ -6,8 +6,11 @@ import {
   Sample,
 } from "./base-form";
 import { Hero } from "./basic-page";
+import CallAPI from "../methods/api";
 
 const initialState = {
+  get_categories: "false",
+  method_type: "GET",
   recipe_name: "",
   meal_type: "",
   cuisine: "",
@@ -30,7 +33,10 @@ class FindRecipes extends Component {
   };
 
   handleSubmit = (event) => {
-    console.log(this.state);
+    let submitState = this.state;
+    submitState.email_address = this.props.email_address;
+    let data = CallAPI(submitState);
+    console.log(data);
     event.preventDefault();
   };
 
