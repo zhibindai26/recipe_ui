@@ -6,7 +6,7 @@ import {
   Sample,
 } from "./base-form";
 import { Hero } from "./basic-page";
-import CallAPI from "../methods/api";
+import getData from "../methods/api";
 
 const initialState = {
   get_categories: "false",
@@ -35,8 +35,7 @@ class FindRecipes extends Component {
   handleSubmit = (event) => {
     let submitState = this.state;
     submitState.email_address = this.props.email_address;
-    let data = CallAPI(submitState);
-    console.log(data);
+    getData(submitState, "SEARCH");
     event.preventDefault();
   };
 

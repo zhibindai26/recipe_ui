@@ -1,11 +1,12 @@
-function CallAPI(props) {
+async function callAPI(props) {
   const methodType = props.methodType;
   const headers = {
     "Content-Type": "application/json",
     "X-Api-Key": props.email_address + "Ls^t14%3",
   };
   const and = "&";
-  const url = "https://xi7r6spee6.execute-api.us-east-2.amazonaws.com/prod?";
+  const endpoint =
+    "https://xi7r6spee6.execute-api.us-east-2.amazonaws.com/prod?";
   const getCategories = `get_categories=${props.get_categories}${and}`;
   const recipe = `recipe=${props.recipe_name}${and}`;
   const type = `type=${props.meal_type}${and}`;
@@ -16,8 +17,8 @@ function CallAPI(props) {
   const link = `link=${props.link}${and}`;
   const sample = `sample=${props.sample}`;
 
-  const endpoint =
-    url +
+  const url =
+    endpoint +
     getCategories +
     recipe +
     type +
@@ -28,16 +29,23 @@ function CallAPI(props) {
     link +
     sample;
 
-  fetch(endpoint, {
-    methodType,
-    headers,
-  })
-    .then((res) => {
-      res.json();
-    })
-    .then((data) => {
-      return data;
-    });
+  try {
+    const response = await fetch(url, { methodType, headers });
+    const data = await response.json();
+    return data.body;
+  } catch (err) {
+    console.error("Error during API request", err);
+  }
 }
 
-export default CallAPI;
+async function getData(state, dataType) {
+  const data = await callAPI(state);
+  if (dataType === "SEARCH") {
+    // render the recipes
+    data.Recipes.forEach((recipe) => console.log(recipe));
+  } else if (dataType === "CATEGORIES") {
+    // return categories
+  }
+}
+
+export default getData;
