@@ -166,6 +166,36 @@ function Sample(props) {
   );
 }
 
+function RecipeDisplay(props) {
+  return (
+    <div className="block">
+      <div class="card">
+        <div class="card-content">
+          <p class="title is-4">
+            {props.Index}: {props.Recipe}
+          </p>
+          <p class="subtitle is-6">Type: {props.Type}</p>
+          <p class="subtitle is-6">Cuisine: {props.Cuisine}</p>
+          <p class="subtitle is-6">Main Ingredient: {props.Main_Ingredient}</p>
+          <p class="subtitle is-6">Source: {props.Source}</p>
+        </div>
+        <footer class="card-footer">
+          <p class="card-footer-item">
+            <span>
+              <a href={props.Link} target="_blank">
+                Link
+              </a>
+            </span>
+          </p>
+          <p class="card-footer-item">
+            <span>Page: {props.Page}</span>
+          </p>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
 export {
   Login,
   SubmitButton,
@@ -173,4 +203,5 @@ export {
   InputAndListField,
   InputAndListFieldReadOnly,
   Sample,
+  RecipeDisplay,
 };

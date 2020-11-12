@@ -38,14 +38,9 @@ async function callAPI(props) {
   }
 }
 
-async function getData(state, dataType) {
-  const data = await callAPI(state);
-  if (dataType === "SEARCH") {
-    // render the recipes
-    data.Recipes.forEach((recipe) => console.log(recipe));
-  } else if (dataType === "CATEGORIES") {
-    // return categories
-  }
+async function getData(props) {
+  const data = await callAPI(props);
+  return data.Recipes;
 }
 
-export default getData;
+export { getData };
