@@ -7,7 +7,7 @@ import {
   RecipeDisplay,
 } from "./base-form";
 import { Hero } from "./basic-page";
-import { getData } from "../methods/api";
+import { callAPI } from "../methods/api";
 
 const initialState = {
   get_categories: "false",
@@ -36,8 +36,14 @@ class FindRecipes extends Component {
   handleSubmit = (event) => {
     let submitState = this.state;
     submitState.email_address = this.props.email_address;
-    this.setState({ isSubmitted: true });
-    this.setState({ recipes: getData(submitState) });
+
+    callAPI(submitState)
+      .then((recipes) => recipes.Recipes)
+      .then((recipes) => {
+        this.setState({ recipes: recipes });
+        this.setState({ isSubmitted: true });
+      });
+
     event.preventDefault();
   };
 
@@ -55,34 +61,15 @@ class FindRecipes extends Component {
 
     const mt = ["", "A Test Value", "B Test Value"];
 
-    const r = [
-      {
-        Recipe: "Beef & Barley Stew",
-        Type: "Meal",
-        Main_Ingredient: "Meat",
-        Cuisine: "American",
-        Source: "Food Lab",
-        Page: "193.0",
-        Link: "http://www.wikipedia.org/",
-      },
-      {
-        Recipe: "Sichuan Beef Tendon",
-        Type: "Side",
-        Main_Ingredient: "Meat",
-        Cuisine: "Asian",
-        Source: "G Drive - Online",
-        Page: "nan",
-        Link: null,
-      },
-    ];
-
     if (isSubmitted) {
+      const recipeSearchTitle = `${recipes.length} ${recipe_name} Recipes Found`;
       return (
         <div className="container">
-          <Hero title="Recipes Found" />
-          {r.map((e) => (
+          <Hero title={recipeSearchTitle} />
+          {recipes.map((e) => (
             <RecipeDisplay
-              Index={r.indexOf(e) + 1}
+              key={recipes.indexOf(e)}
+              Index={recipes.indexOf(e) + 1}
               Recipe={e.Recipe}
               Type={e.Type}
               Main_Ingredient={e.Main_Ingredient}

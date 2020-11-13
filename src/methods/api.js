@@ -38,9 +38,4 @@ async function callAPI(props) {
   }
 }
 
-async function getData(props) {
-  const data = await callAPI(props);
-  return data.Recipes;
-}
-
-export { getData };
+export { callAPI };
