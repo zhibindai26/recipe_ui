@@ -10,7 +10,6 @@ import { Hero } from "./basic-page";
 import { callAPI } from "../methods/api";
 
 const initialState = {
-  get_categories: "false",
   method_type: "GET",
   recipe_name: "",
   meal_type: "",
