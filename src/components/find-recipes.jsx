@@ -17,6 +17,7 @@ const initialState = {
   main_ingredient: "",
   source: "",
   sample: 1,
+  loading: true,
 };
 
 class FindRecipes extends Component {
@@ -24,6 +25,22 @@ class FindRecipes extends Component {
     super(props);
 
     this.state = initialState;
+  }
+
+  componentDidMount() {
+    console.log(this.state);
+    let submit = initialState;
+    submit.email_address = this.props.email_address;
+    submit.get_categories = "true";
+    delete submit.loading;
+
+    callAPI(submit).then((response) => {
+      this.setState({
+        categories: response.body,
+        loading: false,
+        get_categories: false,
+      });
+    });
   }
 
   handleChange = (event) => {
@@ -37,6 +54,7 @@ class FindRecipes extends Component {
     submitState.email_address = this.props.email_address;
     this.setState({ loading: true });
 
+    console.log(submitState);
     callAPI(submitState).then((recipes) => {
       this.setState({ recipes: recipes.body.Recipes });
       this.setState({ isSubmitted: true, loading: false });
@@ -56,9 +74,8 @@ class FindRecipes extends Component {
       isSubmitted,
       recipes,
       loading,
+      categories,
     } = this.state;
-
-    const mt = ["", "A Test Value", "B Test Value"];
 
     if (loading) {
       return <Loading />;
@@ -106,7 +123,8 @@ class FindRecipes extends Component {
             secondName="cuisine"
             secondField={cuisine}
             handleSecondField={this.handleChange}
-            mt={mt}
+            catOne={categories.Type}
+            catTwo={categories.Cuisine}
           />
           <InputAndListFieldReadOnly
             firstFieldName="Main Ingredient"
@@ -117,7 +135,8 @@ class FindRecipes extends Component {
             secondName="source"
             secondField={source}
             handleSecondField={this.handleChange}
-            mt={mt}
+            catOne={categories.Main_Ingredient}
+            catTwo={categories.Source}
           />
           <Sample sample={sample} handleSample={this.handleChange} />
           <SubmitButton />

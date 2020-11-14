@@ -116,7 +116,7 @@ function InputAndListFieldReadOnly(props) {
                 defaultValue={props.firstField}
                 onChange={props.handleFirstField}
               >
-                {props.mt.map((i, index) => (
+                {props.catOne.map((i, index) => (
                   <option key={index}>{i}</option>
                 ))}
               </select>
@@ -133,7 +133,7 @@ function InputAndListFieldReadOnly(props) {
                 defaultValue={props.secondField}
                 onChange={props.handleSecondField}
               >
-                {props.mt.map((i, index) => (
+                {props.catTwo.map((i, index) => (
                   <option key={index}>{i}</option>
                 ))}
               </select>
