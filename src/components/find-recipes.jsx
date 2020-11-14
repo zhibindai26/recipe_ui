@@ -6,7 +6,7 @@ import {
   Sample,
   RecipeDisplay,
 } from "./base-form";
-import { Hero } from "./basic-page";
+import { Hero, Loading } from "./basic-page";
 import callAPI from "../methods/api";
 
 const initialState = {
@@ -35,13 +35,12 @@ class FindRecipes extends Component {
   handleSubmit = (event) => {
     let submitState = this.state;
     submitState.email_address = this.props.email_address;
+    this.setState({ loading: true });
 
-    callAPI(submitState)
-      .then((recipes) => recipes.body.Recipes)
-      .then((recipes) => {
-        this.setState({ recipes: recipes });
-        this.setState({ isSubmitted: true });
-      });
+    callAPI(submitState).then((recipes) => {
+      this.setState({ recipes: recipes.body.Recipes });
+      this.setState({ isSubmitted: true, loading: false });
+    });
 
     event.preventDefault();
   };
@@ -56,9 +55,14 @@ class FindRecipes extends Component {
       sample,
       isSubmitted,
       recipes,
+      loading,
     } = this.state;
 
     const mt = ["", "A Test Value", "B Test Value"];
+
+    if (loading) {
+      return <Loading />;
+    }
 
     if (isSubmitted) {
       const recipeSearchTitle = `${recipes.length} ${recipe_name} Recipes Found`;

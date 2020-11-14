@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import { Hero, Loading } from "./basic-page";
 import { SubmitButton, TextInputField, InputAndListField } from "./base-form";
-import { Hero } from "./basic-page";
 import callAPI from "../methods/api";
 
 const initialState = {
@@ -70,12 +70,12 @@ class AddRecipes extends Component {
       delete submitState.meal_type_error;
       delete submitState.source_error;
 
-      callAPI(submitState)
-        .then((res) => res.message)
-        .then((res) => {
-          this.setState({ message: res });
-          this.setState({ isSubmitted: true });
-        });
+      this.setState({ loading: true });
+
+      callAPI(submitState).then((res) => {
+        this.setState({ message: res.message });
+        this.setState({ isSubmitted: true, loading: false });
+      });
 
       event.preventDefault();
     }
@@ -95,9 +95,14 @@ class AddRecipes extends Component {
       source_error,
       isSubmitted,
       message,
+      loading,
     } = this.state;
 
     const mt = ["A", "B"];
+
+    if (loading) {
+      return <Loading />;
+    }
 
     if (isSubmitted) {
       return (

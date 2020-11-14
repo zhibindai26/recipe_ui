@@ -44,4 +44,12 @@ function Footer() {
   );
 }
 
-export { Hero, Navbar, Footer };
+function Loading() {
+  return (
+    <div>
+      <h1 className="subtitle">Loading...</h1>
+    </div>
+  );
+}
+
+export { Hero, Navbar, Footer, Loading };
