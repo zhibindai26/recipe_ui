@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { SubmitButton, TextInputField, InputAndListField } from "./base-form";
 import { Hero } from "./basic-page";
+import { callAPI } from "../methods/api";
 
 const initialState = {
+  method_type: "POST",
   recipe_name: "",
   meal_type: "",
   cuisine: "",
@@ -10,7 +12,7 @@ const initialState = {
   source: "",
   page: "",
   link: "",
-  recipe_name_error: "",
+  recipe_error: "",
   meal_type_error: "",
   source_error: "",
 };
@@ -36,21 +38,16 @@ class AddRecipes extends Component {
     let meal = this.state.meal_type.trim();
     let source = this.state.source.trim();
 
-    const recipeIsValid = this.validate(
-      recipe,
-      "recipe_name_error",
-      "Recipe Name"
-    );
+    const recipeIsValid = this.validate(recipe, "recipe_error", "Recipe Name");
     const mealIsValid = this.validate(meal, "meal_type_error", "Meal Type");
     const sourceIsValid = this.validate(source, "source_error", "Source");
 
     if (recipeIsValid && sourceIsValid && mealIsValid) {
       this.setState({
-        recipe_name_error: "",
+        recipe_error: "",
         meal_type_error: "",
         source_error: "",
       });
-      console.log(this.state);
       return true;
     }
     event.preventDefault();
@@ -67,10 +64,20 @@ class AddRecipes extends Component {
     let readyToSubmit = this.handleValidation(event);
 
     if (readyToSubmit) {
-      console.log(this.state);
+      let submitState = this.state;
+      submitState.email_address = this.props.email_address;
+      delete submitState.recipe_error;
+      delete submitState.meal_type_error;
+      delete submitState.source_error;
+
+      callAPI(submitState)
+        .then((res) => res.message)
+        .then((res) => {
+          this.setState({ message: res });
+          this.setState({ isSubmitted: true });
+        });
+
       event.preventDefault();
-      // API POST request
-      // Display result message
     }
   };
 
@@ -83,12 +90,22 @@ class AddRecipes extends Component {
       source,
       page,
       link,
-      recipe_name_error,
+      recipe_error,
       meal_type_error,
       source_error,
+      isSubmitted,
+      message,
     } = this.state;
 
     const mt = ["A", "B"];
+
+    if (isSubmitted) {
+      return (
+        <div className="container">
+          <Hero title={message} />
+        </div>
+      );
+    }
 
     return (
       <div className="container">
@@ -100,7 +117,7 @@ class AddRecipes extends Component {
             name="recipe_name"
             defaultValue={recipe_name}
             handleChange={this.handleChange}
-            formError={recipe_name_error}
+            formError={recipe_error}
           />
           <InputAndListField
             firstFieldName="Meal Type"

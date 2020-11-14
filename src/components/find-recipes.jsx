@@ -37,7 +37,7 @@ class FindRecipes extends Component {
     submitState.email_address = this.props.email_address;
 
     callAPI(submitState)
-      .then((recipes) => recipes.Recipes)
+      .then((recipes) => recipes.body.Recipes)
       .then((recipes) => {
         this.setState({ recipes: recipes });
         this.setState({ isSubmitted: true });
