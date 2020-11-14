@@ -9,28 +9,25 @@ import {
 import { Hero, Loading } from "./basic-page";
 import callAPI from "../methods/api";
 
-const initialState = {
-  method_type: "GET",
-  recipe_name: "",
-  meal_type: "",
-  cuisine: "",
-  main_ingredient: "",
-  source: "",
-  sample: 1,
-  loading: true,
-};
-
 class FindRecipes extends Component {
   constructor(props) {
     super(props);
 
-    this.state = initialState;
+    this.state = {
+      method_type: "GET",
+      recipe_name: "",
+      meal_type: "",
+      cuisine: "",
+      main_ingredient: "",
+      source: "",
+      sample: 1,
+      loading: true,
+      email_address: this.props.email_address,
+    };
   }
 
   componentDidMount() {
-    console.log(this.state);
-    let submit = initialState;
-    submit.email_address = this.props.email_address;
+    let submit = this.state;
     submit.get_categories = "true";
     delete submit.loading;
 
@@ -50,12 +47,7 @@ class FindRecipes extends Component {
   };
 
   handleSubmit = (event) => {
-    let submitState = this.state;
-    submitState.email_address = this.props.email_address;
-    this.setState({ loading: true });
-
-    console.log(submitState);
-    callAPI(submitState).then((recipes) => {
+    callAPI(this.state).then((recipes) => {
       this.setState({ recipes: recipes.body.Recipes });
       this.setState({ isSubmitted: true, loading: false });
     });
