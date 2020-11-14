@@ -38,4 +38,4 @@ async function callAPI(props) {
   }
 }
 
-export { callAPI };
+export default callAPI;

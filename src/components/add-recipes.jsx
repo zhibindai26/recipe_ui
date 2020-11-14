@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { SubmitButton, TextInputField, InputAndListField } from "./base-form";
 import { Hero } from "./basic-page";
-import { callAPI } from "../methods/api";
+import callAPI from "../methods/api";
 
 const initialState = {
   method_type: "POST",

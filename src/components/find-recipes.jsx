@@ -7,7 +7,7 @@ import {
   RecipeDisplay,
 } from "./base-form";
 import { Hero } from "./basic-page";
-import { callAPI } from "../methods/api";
+import callAPI from "../methods/api";
 
 const initialState = {
   method_type: "GET",
