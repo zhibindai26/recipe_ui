@@ -51,9 +51,14 @@ class FindRecipes extends Component {
     let submit = this.state;
     delete submit.loading;
 
-    callAPI(submit).then((recipes) => {
-      this.setState({ recipes: recipes.body.Recipes });
-      this.setState({ isSubmitted: true, loading: false });
+    callAPI(submit).then((response) => {
+      this.setState({
+        recipes: response.body.Recipes,
+        responseCode: response.statusCode,
+        responseMessage: response.message,
+        isSubmitted: true,
+        loading: false,
+      });
     });
 
     event.preventDefault();
@@ -72,6 +77,8 @@ class FindRecipes extends Component {
       recipes,
       loading,
       categories,
+      responseCode,
+      responseMessage,
     } = this.state;
 
     if (loading) {
@@ -79,7 +86,14 @@ class FindRecipes extends Component {
     }
 
     if (isSubmitted) {
-      const recipeSearchTitle = `${recipes.length} ${recipe_name} Recipes Found`;
+      if (responseCode !== 200) {
+        return (
+          <div className="container">
+            <h1>{responseMessage}</h1>
+          </div>
+        );
+      }
+      const recipeSearchTitle = `${recipes.length} ${recipe_name} ${responseMessage}`;
       return (
         <div className="container">
           <Hero title={recipeSearchTitle} />

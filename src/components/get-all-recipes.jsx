@@ -61,16 +61,29 @@ class GetAllRecipes extends Component {
     let submit = this.state;
     delete submit.loading;
 
-    callAPI(submit).then((recipes) => {
-      this.setState({ recipes: recipes.body.Recipes, loading: false });
+    callAPI(submit).then((response) => {
+      this.setState({
+        recipes: response.body.Recipes,
+        responseCode: response.statusCode,
+        responseMessage: response.message,
+        loading: false,
+      });
     });
   }
 
   render() {
-    const { loading, recipes } = this.state;
+    const { loading, recipes, responseCode, responseMessage } = this.state;
 
     if (loading) {
       return <Loading />;
+    }
+
+    if (responseCode !== 200) {
+      return (
+        <div className="container">
+          <h1>{responseMessage}</h1>
+        </div>
+      );
     }
 
     if (recipes) {

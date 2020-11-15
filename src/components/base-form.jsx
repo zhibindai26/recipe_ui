@@ -219,6 +219,16 @@ function Sample(props) {
 }
 
 function RecipeDisplay(props) {
+  let source = props.Page
+    ? `Source: ${props.Source} - P. ${props.Page}`
+    : `Source: ${props.Source}`;
+
+  let link = props.Link ? (
+    <a href={props.Link} target="_blank">
+      Link
+    </a>
+  ) : null;
+
   return (
     <div className="block">
       <div className="card">
@@ -232,20 +242,9 @@ function RecipeDisplay(props) {
             Main Ingredient: {props.Main_Ingredient}
           </p>
           <p className="subtitle is-6">Uploader: {props.Uploader}</p>
-          <p className="subtitle is-6">Source: {props.Source}</p>
+          <p className="subtitle is-6">{source}</p>
+          <p className="subtitle is-6">{link}</p>
         </div>
-        <footer className="card-footer">
-          <p className="card-footer-item">
-            <span>
-              <a href={props.Link} target="_blank">
-                Link
-              </a>
-            </span>
-          </p>
-          <p className="card-footer-item">
-            <span>Page: {props.Page}</span>
-          </p>
-        </footer>
       </div>
     </div>
   );
