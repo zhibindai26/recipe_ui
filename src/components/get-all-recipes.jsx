@@ -11,7 +11,19 @@ const columns = [
   { name: "Uploader", label: "Uploader" },
   { name: "Source", label: "Source" },
   { name: "Page", label: "Page" },
-  { name: "Link", label: "Link" },
+  {
+    name: "Link",
+    label: "Link",
+    options: {
+      customBodyRender: (value) => {
+        return (
+          <a href={value} target="_blank">
+            {value}
+          </a>
+        );
+      },
+    },
+  },
 ];
 
 const options = {
