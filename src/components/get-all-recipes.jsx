@@ -8,8 +8,10 @@ const columns = [
   { name: "Type", label: " Meal Type" },
   { name: "Main_Ingredient", label: "Main Ingredient" },
   { name: "Cuisine", label: "Cuisine" },
+  { name: "Uploader", label: "Uploader" },
   { name: "Source", label: "Source" },
   { name: "Page", label: "Page" },
+  { name: "Link", label: "Link" },
 ];
 
 const options = {
@@ -35,6 +37,7 @@ class GetAllRecipes extends Component {
       meal_type: "",
       cuisine: "",
       main_ingredient: "",
+      uploader: "",
       source: "",
       loading: true,
       sample: 9999,

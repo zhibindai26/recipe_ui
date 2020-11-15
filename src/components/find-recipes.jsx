@@ -3,6 +3,7 @@ import {
   SubmitButton,
   TextInputField,
   InputAndListFieldReadOnly,
+  SingleInputAndListFieldReadOnly,
   Sample,
   RecipeDisplay,
 } from "./base-form";
@@ -20,6 +21,7 @@ class FindRecipes extends Component {
       meal_type: "",
       cuisine: "",
       main_ingredient: "",
+      uploader: "",
       source: "",
       loading: true,
       sample: 1,
@@ -63,6 +65,7 @@ class FindRecipes extends Component {
       meal_type,
       cuisine,
       main_ingredient,
+      uploader,
       source,
       sample,
       isSubmitted,
@@ -87,6 +90,7 @@ class FindRecipes extends Component {
               Recipe={e.Recipe}
               Type={e.Type}
               Main_Ingredient={e.Main_Ingredient}
+              Uploader={e.Uploader}
               Cuisine={e.Cuisine}
               Source={e.Source}
               Page={e.Page}
@@ -131,6 +135,13 @@ class FindRecipes extends Component {
             handleSecondField={this.handleChange}
             catOne={categories.Main_Ingredient}
             catTwo={categories.Source}
+          />
+          <SingleInputAndListFieldReadOnly
+            fieldName="Uploader"
+            name="uploader"
+            field={uploader}
+            handleField={this.handleChange}
+            cat={categories.Uploader}
           />
           <Sample sample={sample} handleSample={this.handleChange} />
           <SubmitButton />

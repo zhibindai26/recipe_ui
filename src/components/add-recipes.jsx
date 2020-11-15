@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Hero, Loading } from "./basic-page";
-import { SubmitButton, TextInputField, InputAndListField } from "./base-form";
+import {
+  SubmitButton,
+  TextInputField,
+  InputAndListField,
+  SingleInputAndListField,
+} from "./base-form";
 import callAPI from "../methods/api";
 import { getCategoriesParams } from "../constants/constants";
 
@@ -14,6 +19,7 @@ class AddRecipes extends Component {
       meal_type: "",
       cuisine: "",
       main_ingredient: "",
+      uploader: "",
       source: "",
       page: "",
       link: "",
@@ -106,6 +112,7 @@ class AddRecipes extends Component {
       meal_type,
       cuisine,
       main_ingredient,
+      uploader,
       source,
       page,
       link,
@@ -167,6 +174,13 @@ class AddRecipes extends Component {
             formErrorTwo={source_error}
             catOne={categories.Main_Ingredient}
             catTwo={categories.Source}
+          />
+          <SingleInputAndListField
+            fieldName="Uploader"
+            name="uploader"
+            field={uploader}
+            handleField={this.handleChange}
+            cat={categories.Uploader}
           />
           <TextInputField
             fieldName="Page"

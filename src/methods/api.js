@@ -11,6 +11,7 @@ async function callAPI(props) {
   const recipe = `recipe=${props.recipe_name}${and}`;
   const type = `type=${props.meal_type}${and}`;
   const mainIngredient = `main_ingredient=${props.main_ingredient}${and}`;
+  const uploader = `uploader=${props.uploader}${and}`;
   const cuisine = `cuisine=${props.cuisine}${and}`;
   const source = `source=${props.source}${and}`;
   const page = `page=${props.page}${and}`;
@@ -23,6 +24,7 @@ async function callAPI(props) {
     recipe +
     type +
     mainIngredient +
+    uploader +
     cuisine +
     source +
     page +

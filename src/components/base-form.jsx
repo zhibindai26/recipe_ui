@@ -103,6 +103,58 @@ function InputAndListField(props) {
   );
 }
 
+function SingleInputAndListField(props) {
+  return (
+    <div className="field is-horizontal">
+      <div className="field-body">
+        <div className="field">
+          <label className="label is-medium">{props.fieldName}</label>
+          <div className="control">
+            <input
+              className="input is-medium"
+              name={props.name}
+              type="text"
+              list={props.name}
+              defaultValue={props.field}
+              onChange={props.handleField}
+            />
+            <datalist id={props.name}>
+              {props.cat.map((i, index) => (
+                <option key={index}>{i}</option>
+              ))}
+            </datalist>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SingleInputAndListFieldReadOnly(props) {
+  return (
+    <div className="field is-horizontal">
+      <div className="field-body">
+        <div className="field">
+          <label className="label is-medium">{props.fieldName}</label>
+          <div className="control">
+            <div className="select" name={props.name}>
+              <select
+                name={props.name}
+                defaultValue={props.field}
+                onChange={props.handleField}
+              >
+                {props.cat.map((i, index) => (
+                  <option key={index}>{i}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function InputAndListFieldReadOnly(props) {
   return (
     <div className="field is-horizontal">
@@ -179,6 +231,7 @@ function RecipeDisplay(props) {
           <p className="subtitle is-6">
             Main Ingredient: {props.Main_Ingredient}
           </p>
+          <p className="subtitle is-6">Uploader: {props.Uploader}</p>
           <p className="subtitle is-6">Source: {props.Source}</p>
         </div>
         <footer className="card-footer">
@@ -206,4 +259,6 @@ export {
   InputAndListFieldReadOnly,
   Sample,
   RecipeDisplay,
+  SingleInputAndListField,
+  SingleInputAndListFieldReadOnly,
 };
