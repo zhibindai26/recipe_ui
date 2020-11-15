@@ -8,6 +8,7 @@ import {
 } from "./base-form";
 import { Hero, Loading } from "./basic-page";
 import callAPI from "../methods/api";
+import { getCategoriesParams } from "../constants/constants";
 
 class FindRecipes extends Component {
   constructor(props) {
@@ -20,22 +21,20 @@ class FindRecipes extends Component {
       cuisine: "",
       main_ingredient: "",
       source: "",
-      sample: 1,
       loading: true,
+      sample: 1,
       email_address: this.props.email_address,
     };
   }
 
   componentDidMount() {
-    let submit = this.state;
-    submit.get_categories = "true";
-    delete submit.loading;
+    let submit = getCategoriesParams;
+    submit.email_address = this.props.email_address;
 
     callAPI(submit).then((response) => {
       this.setState({
         categories: response.body,
         loading: false,
-        get_categories: false,
       });
     });
   }
@@ -47,7 +46,10 @@ class FindRecipes extends Component {
   };
 
   handleSubmit = (event) => {
-    callAPI(this.state).then((recipes) => {
+    let submit = this.state;
+    delete submit.loading;
+
+    callAPI(submit).then((recipes) => {
       this.setState({ recipes: recipes.body.Recipes });
       this.setState({ isSubmitted: true, loading: false });
     });

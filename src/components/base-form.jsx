@@ -72,7 +72,7 @@ function InputAndListField(props) {
               onChange={props.handleFirstField}
             />
             <datalist id={props.firstName}>
-              {props.mt.map((i, index) => (
+              {props.catOne.map((i, index) => (
                 <option key={index}>{i}</option>
               ))}
             </datalist>
@@ -91,7 +91,7 @@ function InputAndListField(props) {
               onChange={props.handleSecondField}
             />
             <datalist id={props.secondName}>
-              {props.mt.map((i, index) => (
+              {props.catTwo.map((i, index) => (
                 <option key={index}>{i}</option>
               ))}
             </datalist>

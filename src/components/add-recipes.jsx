@@ -2,29 +2,42 @@ import React, { Component } from "react";
 import { Hero, Loading } from "./basic-page";
 import { SubmitButton, TextInputField, InputAndListField } from "./base-form";
 import callAPI from "../methods/api";
-
-const initialState = {
-  method_type: "POST",
-  recipe_name: "",
-  meal_type: "",
-  cuisine: "",
-  main_ingredient: "",
-  source: "",
-  page: "",
-  link: "",
-  recipe_error: "",
-  meal_type_error: "",
-  source_error: "",
-};
+import { getCategoriesParams } from "../constants/constants";
 
 class AddRecipes extends Component {
   constructor(props) {
     super(props);
 
-    this.state = initialState;
+    this.state = {
+      method_type: "POST",
+      recipe_name: "",
+      meal_type: "",
+      cuisine: "",
+      main_ingredient: "",
+      source: "",
+      page: "",
+      link: "",
+      loading: true,
+      recipe_error: "",
+      meal_type_error: "",
+      source_error: "",
+      email_address: this.props.email_address,
+    };
   }
 
-  validate = (value, field, fieldDisplay) => {
+  componentDidMount() {
+    let submit = getCategoriesParams;
+    submit.email_address = this.props.email_address;
+
+    callAPI(submit).then((response) => {
+      this.setState({
+        categories: response.body,
+        loading: false,
+      });
+    });
+  }
+
+  validateCheck = (value, field, fieldDisplay) => {
     if (!value) {
       this.setState({ [field]: `${fieldDisplay} cannot be left blank.` });
       return false;
@@ -38,9 +51,17 @@ class AddRecipes extends Component {
     let meal = this.state.meal_type.trim();
     let source = this.state.source.trim();
 
-    const recipeIsValid = this.validate(recipe, "recipe_error", "Recipe Name");
-    const mealIsValid = this.validate(meal, "meal_type_error", "Meal Type");
-    const sourceIsValid = this.validate(source, "source_error", "Source");
+    const recipeIsValid = this.validateCheck(
+      recipe,
+      "recipe_error",
+      "Recipe Name"
+    );
+    const mealIsValid = this.validateCheck(
+      meal,
+      "meal_type_error",
+      "Meal Type"
+    );
+    const sourceIsValid = this.validateCheck(source, "source_error", "Source");
 
     if (recipeIsValid && sourceIsValid && mealIsValid) {
       this.setState({
@@ -64,16 +85,14 @@ class AddRecipes extends Component {
     let readyToSubmit = this.handleValidation(event);
 
     if (readyToSubmit) {
-      let submitState = this.state;
-      submitState.email_address = this.props.email_address;
-      delete submitState.recipe_error;
-      delete submitState.meal_type_error;
-      delete submitState.source_error;
+      let submit = this.state;
+      delete submit.recipe_error;
+      delete submit.meal_type_error;
+      delete submit.source_error;
+      delete submit.loading;
 
-      this.setState({ loading: true });
-
-      callAPI(submitState).then((res) => {
-        this.setState({ message: res.message });
+      callAPI(submit).then((response) => {
+        this.setState({ message: response.message });
         this.setState({ isSubmitted: true, loading: false });
       });
 
@@ -90,15 +109,14 @@ class AddRecipes extends Component {
       source,
       page,
       link,
+      loading,
       recipe_error,
       meal_type_error,
       source_error,
       isSubmitted,
       message,
-      loading,
+      categories,
     } = this.state;
-
-    const mt = ["A", "B"];
 
     if (loading) {
       return <Loading />;
@@ -134,7 +152,8 @@ class AddRecipes extends Component {
             secondName="cuisine"
             secondField={cuisine}
             handleSecondField={this.handleChange}
-            mt={mt}
+            catOne={categories.Type}
+            catTwo={categories.Cuisine}
           />
           <InputAndListField
             firstFieldName="Main Ingredient"
@@ -146,7 +165,8 @@ class AddRecipes extends Component {
             secondField={source}
             handleSecondField={this.handleChange}
             formErrorTwo={source_error}
-            mt={mt}
+            catOne={categories.Main_Ingredient}
+            catTwo={categories.Source}
           />
           <TextInputField
             fieldName="Page"

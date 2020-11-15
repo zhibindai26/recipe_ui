@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Hero, Loading } from "./basic-page";
 import callAPI from "../methods/api";
+import RecipesTable from "../components/table";
 
 class GetAllRecipes extends Component {
   constructor(props) {
@@ -8,22 +9,22 @@ class GetAllRecipes extends Component {
 
     this.state = {
       method_type: "GET",
-      email_address: this.props.email_address,
       recipe_name: "",
       meal_type: "",
       cuisine: "",
       main_ingredient: "",
       source: "",
-      sample: 2,
       loading: true,
+      sample: 9999,
+      email_address: this.props.email_address,
     };
   }
 
   componentDidMount() {
-    let submitState = this.state;
-    delete submitState.loading;
+    let submit = this.state;
+    delete submit.loading;
 
-    callAPI(submitState).then((recipes) => {
+    callAPI(submit).then((recipes) => {
       this.setState({ recipes: recipes.body.Recipes, loading: false });
     });
   }
@@ -36,10 +37,13 @@ class GetAllRecipes extends Component {
     }
 
     if (recipes) {
+      // need to get table and display it
       return (
         <div className="container">
           <Hero title="All Recipes" />
-          <div>{recipes[0].Recipe}</div>
+          {recipes.map((e) => (
+            <RecipesTable key={recipes.indexOf(e)} name={e.Recipe} />
+          ))}
         </div>
       );
     }
