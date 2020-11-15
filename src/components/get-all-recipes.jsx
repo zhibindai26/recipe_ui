@@ -1,7 +1,29 @@
 import React, { Component } from "react";
+import MUIDataTable from "mui-datatables";
 import { Hero, Loading } from "./basic-page";
 import callAPI from "../methods/api";
-import RecipesTable from "../components/table";
+
+const columns = [
+  { name: "Recipe", label: "Recipe" },
+  { name: "Type", label: " Meal Type" },
+  { name: "Main_Ingredient", label: "MainIngredient" },
+  { name: "Cuisine", label: "Cuisine" },
+  { name: "Source", label: "Source" },
+  { name: "Page", label: "Page" },
+];
+
+const options = {
+  filterType: "dropdown",
+  sortOrder: {
+    name: "Recipe",
+    direction: "asc",
+  },
+  download: "false",
+  print: "false",
+  searchOpen: "true",
+  rowsPerPageOptions: [10, 25, 50],
+  selectableRows: "none",
+};
 
 class GetAllRecipes extends Component {
   constructor(props) {
@@ -37,13 +59,10 @@ class GetAllRecipes extends Component {
     }
 
     if (recipes) {
-      // need to get table and display it
       return (
         <div className="container">
           <Hero title="All Recipes" />
-          {recipes.map((e) => (
-            <RecipesTable key={recipes.indexOf(e)} name={e.Recipe} />
-          ))}
+          <MUIDataTable columns={columns} data={recipes} options={options} />
         </div>
       );
     }
