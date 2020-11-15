@@ -6,7 +6,7 @@ import callAPI from "../methods/api";
 const columns = [
   { name: "Recipe", label: "Recipe" },
   { name: "Type", label: " Meal Type" },
-  { name: "Main_Ingredient", label: "MainIngredient" },
+  { name: "Main_Ingredient", label: "Main Ingredient" },
   { name: "Cuisine", label: "Cuisine" },
   { name: "Source", label: "Source" },
   { name: "Page", label: "Page" },
