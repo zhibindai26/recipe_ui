@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import MUIDataTable from "mui-datatables";
 import { Hero, Loading } from "./basic-page";
 import callAPI from "../methods/api";
+import { allRecipeTitle, allRecipeSubtitle } from "../constants/constants";
 
 const columns = [
   { name: "Recipe", label: "Recipe" },
-  { name: "Type", label: " Meal Type" },
+  { name: "Type", label: "Meal Type" },
   { name: "Main_Ingredient", label: "Main Ingredient" },
   { name: "Cuisine", label: "Cuisine" },
   { name: "Uploader", label: "Uploader" },
@@ -24,6 +25,7 @@ const columns = [
       },
     },
   },
+  { name: "Notes", label: "Notes" },
 ];
 
 const options = {
@@ -89,7 +91,7 @@ class GetAllRecipes extends Component {
     if (recipes) {
       return (
         <div className="container">
-          <Hero title="All Recipes" />
+          <Hero title={allRecipeTitle} subtitle={allRecipeSubtitle} />
           <MUIDataTable columns={columns} data={recipes} options={options} />
         </div>
       );

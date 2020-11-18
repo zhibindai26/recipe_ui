@@ -9,7 +9,11 @@ import {
 } from "./base-form";
 import { Hero, Loading } from "./basic-page";
 import callAPI from "../methods/api";
-import { getCategoriesParams } from "../constants/constants";
+import {
+  getCategoriesParams,
+  findRecipeTitle,
+  findRecipeSubtitle,
+} from "../constants/constants";
 
 class FindRecipes extends Component {
   constructor(props) {
@@ -109,6 +113,7 @@ class FindRecipes extends Component {
               Source={e.Source}
               Page={e.Page}
               Link={e.Link}
+              Notes={e.Notes}
             />
           ))}
         </div>
@@ -117,7 +122,7 @@ class FindRecipes extends Component {
 
     return (
       <div className="container">
-        <Hero title="Find Existing Recipes" />
+        <Hero title={findRecipeTitle} subtitle={findRecipeSubtitle} />
 
         <form onSubmit={this.handleSubmit}>
           <TextInputField

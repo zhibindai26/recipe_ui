@@ -4,9 +4,36 @@ async function callAPI(props) {
     "Content-Type": "application/json",
     "X-Api-Key": props.email_address + "Ls^t14%3",
   };
-  const and = "&";
   const endpoint =
     "https://xi7r6spee6.execute-api.us-east-2.amazonaws.com/prod?";
+
+  try {
+    if (method === "GET") {
+      const url = createGETUrl(props);
+      const response = await fetch(endpoint + url, {
+        method: method,
+        headers: headers,
+      });
+      const data = await response.json();
+      return data;
+    } else if (method === "POST") {
+      console.log(props);
+      const response = await fetch(endpoint, {
+        method: method,
+        headers: headers,
+        body: JSON.stringify(props),
+      });
+      console.log(response);
+      const data = await response.json();
+      return data;
+    }
+  } catch (err) {
+    console.error("Error during API request", err);
+  }
+}
+
+function createGETUrl(props) {
+  const and = "&";
   const getCategories = `get_categories=${props.get_categories}${and}`;
   const recipe = `recipe=${props.recipe_name}${and}`;
   const type = `type=${props.meal_type}${and}`;
@@ -19,7 +46,6 @@ async function callAPI(props) {
   const sample = `sample=${props.sample}`;
 
   const url =
-    endpoint +
     getCategories +
     recipe +
     type +
@@ -31,13 +57,7 @@ async function callAPI(props) {
     link +
     sample;
 
-  try {
-    const response = await fetch(url, { method: method, headers: headers });
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error("Error during API request", err);
-  }
+  return url;
 }
 
 export default callAPI;

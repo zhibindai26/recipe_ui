@@ -5,9 +5,14 @@ import {
   TextInputField,
   InputAndListField,
   SingleInputAndListField,
+  TextBox,
 } from "./base-form";
 import callAPI from "../methods/api";
-import { getCategoriesParams } from "../constants/constants";
+import {
+  getCategoriesParams,
+  addRecipeTitle,
+  addRecipeSubtitle,
+} from "../constants/constants";
 
 class AddRecipes extends Component {
   constructor(props) {
@@ -15,17 +20,18 @@ class AddRecipes extends Component {
 
     this.state = {
       method_type: "POST",
-      recipe_name: "",
-      meal_type: "",
+      recipe: "",
+      type: "",
       cuisine: "",
       main_ingredient: "",
       uploader: "",
       source: "",
       page: "",
       link: "",
+      notes: "",
       loading: true,
       recipe_error: "",
-      meal_type_error: "",
+      type_error: "",
       source_error: "",
       email_address: this.props.email_address,
     };
@@ -53,8 +59,8 @@ class AddRecipes extends Component {
 
   // form validation for recipe name, meal type, source
   handleValidation = (event) => {
-    let recipe = this.state.recipe_name.trim();
-    let meal = this.state.meal_type.trim();
+    let recipe = this.state.recipe.trim();
+    let meal = this.state.type.trim();
     let source = this.state.source.trim();
 
     const recipeIsValid = this.validateCheck(
@@ -62,17 +68,13 @@ class AddRecipes extends Component {
       "recipe_error",
       "Recipe Name"
     );
-    const mealIsValid = this.validateCheck(
-      meal,
-      "meal_type_error",
-      "Meal Type"
-    );
+    const mealIsValid = this.validateCheck(meal, "type_error", "Meal Type");
     const sourceIsValid = this.validateCheck(source, "source_error", "Source");
 
     if (recipeIsValid && sourceIsValid && mealIsValid) {
       this.setState({
         recipe_error: "",
-        meal_type_error: "",
+        type_error: "",
         source_error: "",
       });
       return true;
@@ -93,9 +95,11 @@ class AddRecipes extends Component {
     if (readyToSubmit) {
       let submit = this.state;
       delete submit.recipe_error;
-      delete submit.meal_type_error;
+      delete submit.type_error;
       delete submit.source_error;
       delete submit.loading;
+      delete submit.email_address;
+      delete submit.categories;
 
       callAPI(submit).then((response) => {
         this.setState({ message: response.message });
@@ -108,17 +112,18 @@ class AddRecipes extends Component {
 
   render() {
     const {
-      recipe_name,
-      meal_type,
+      recipe,
+      type,
       cuisine,
       main_ingredient,
       uploader,
       source,
       page,
       link,
+      notes,
       loading,
       recipe_error,
-      meal_type_error,
+      type_error,
       source_error,
       isSubmitted,
       message,
@@ -139,22 +144,22 @@ class AddRecipes extends Component {
 
     return (
       <div className="container">
-        <Hero title="Add a New Recipe to the Recipe Database" />
+        <Hero title={addRecipeTitle} subtitle={addRecipeSubtitle} />
 
         <form onSubmit={this.handleSubmit}>
           <TextInputField
             fieldName="Recipe Name"
-            name="recipe_name"
-            defaultValue={recipe_name}
+            name="recipe"
+            defaultValue={recipe}
             handleChange={this.handleChange}
             formError={recipe_error}
           />
           <InputAndListField
             firstFieldName="Meal Type"
-            firstName="meal_type"
-            firstField={meal_type}
+            firstName="type"
+            firstField={type}
             handleFirstField={this.handleChange}
-            formErrorOne={meal_type_error}
+            formErrorOne={type_error}
             secondFieldName="Cuisine"
             secondName="cuisine"
             secondField={cuisine}
@@ -192,6 +197,12 @@ class AddRecipes extends Component {
             fieldName="Link"
             name="link"
             defaultValue={link}
+            handleChange={this.handleChange}
+          />
+          <TextBox
+            fieldName="Notes"
+            name="notes"
+            defaultValue={notes}
             handleChange={this.handleChange}
           />
           <SubmitButton />

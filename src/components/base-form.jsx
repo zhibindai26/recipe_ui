@@ -218,6 +218,23 @@ function Sample(props) {
   );
 }
 
+function TextBox(props) {
+  return (
+    <div className="field">
+      <label className="label is-medium">{props.fieldName}</label>
+      <div className="control">
+        <input
+          className="input is-large"
+          name={props.name}
+          type="text"
+          defaultValue={props.defaultValue}
+          onChange={props.handleChange}
+        />
+      </div>
+    </div>
+  );
+}
+
 function RecipeDisplay(props) {
   let source = props.Page
     ? `Source: ${props.Source} - P. ${props.Page}`
@@ -244,6 +261,7 @@ function RecipeDisplay(props) {
           <p className="subtitle is-6">Uploader: {props.Uploader}</p>
           <p className="subtitle is-6">{source}</p>
           <p className="subtitle is-6">{link}</p>
+          <p className="subtitle is-6">{props.Notes}</p>
         </div>
       </div>
     </div>
@@ -260,4 +278,5 @@ export {
   RecipeDisplay,
   SingleInputAndListField,
   SingleInputAndListFieldReadOnly,
+  TextBox,
 };

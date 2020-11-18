@@ -7,6 +7,7 @@ function Hero(props) {
       <div className="hero-body">
         <div className="container">
           <h1 className="title">{props.title}</h1>
+          <h3 className="subtitle">{props.subtitle}</h3>
         </div>
       </div>
     </section>
@@ -47,7 +48,7 @@ function Footer() {
 function Loading() {
   return (
     <div>
-      <h1 className="subtitle">Loading...</h1>
+      <h1 className="subtitle">Loading!</h1>
     </div>
   );
 }
