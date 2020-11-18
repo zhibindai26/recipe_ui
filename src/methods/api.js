@@ -17,11 +17,10 @@ async function callAPI(props) {
       const data = await response.json();
       return data;
     } else if (method === "POST") {
-      console.log(props);
       const response = await fetch(endpoint, {
         method: method,
         headers: headers,
-        body: JSON.stringify(props),
+        body: props,
       });
       console.log(response);
       const data = await response.json();

@@ -261,7 +261,7 @@ function RecipeDisplay(props) {
           <p className="subtitle is-6">Uploader: {props.Uploader}</p>
           <p className="subtitle is-6">{source}</p>
           <p className="subtitle is-6">{link}</p>
-          <p className="subtitle is-6">{props.Notes}</p>
+          <p className="subtitle is-6">Notes: {props.Notes}</p>
         </div>
       </div>
     </div>
