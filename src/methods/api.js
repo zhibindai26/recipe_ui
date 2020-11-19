@@ -17,12 +17,14 @@ async function callAPI(props) {
       const data = await response.json();
       return data;
     } else if (method === "POST") {
+      let body = props;
+      delete body.method_type;
+      delete body.email_address;
       const response = await fetch(endpoint, {
         method: method,
         headers: headers,
-        body: props,
+        body: JSON.stringify(body),
       });
-      console.log(response);
       const data = await response.json();
       return data;
     }

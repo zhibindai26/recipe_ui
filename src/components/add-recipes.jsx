@@ -57,7 +57,7 @@ class AddRecipes extends Component {
     return true;
   };
 
-  // form validation for recipe name, meal type, source
+  // form validation for recipe name, meal type, and source
   handleValidation = (event) => {
     let recipe = this.state.recipe.trim();
     let meal = this.state.type.trim();
@@ -98,12 +98,13 @@ class AddRecipes extends Component {
       delete submit.type_error;
       delete submit.source_error;
       delete submit.loading;
-      delete submit.email_address;
       delete submit.categories;
+      
+      this.setState({ loading: true });
 
       callAPI(submit).then((response) => {
-        this.setState({ message: response.message });
-        this.setState({ isSubmitted: true, loading: false });
+        console.log(response);
+        this.setState({ message: response.message, loading: false });
       });
 
       event.preventDefault();
@@ -125,7 +126,6 @@ class AddRecipes extends Component {
       recipe_error,
       type_error,
       source_error,
-      isSubmitted,
       message,
       categories,
     } = this.state;
@@ -134,7 +134,8 @@ class AddRecipes extends Component {
       return <Loading />;
     }
 
-    if (isSubmitted) {
+    if (message) {
+      console.log(this.state);
       return (
         <div className="container">
           <Hero title={message} />
