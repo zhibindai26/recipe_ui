@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import MUIDataTable from "mui-datatables";
 import { Hero, Loading } from "./basic-page";
 import callAPI from "../methods/api";
-import { allRecipeTitle, allRecipeSubtitle } from "../constants/constants";
+import { get, allRecipeTitle, allRecipeSubtitle } from "../constants/constants";
 
 const columns = [
   { name: "Recipe", label: "Recipe" },
@@ -46,7 +46,7 @@ class GetAllRecipes extends Component {
     super(props);
 
     this.state = {
-      method_type: "GET",
+      method_type: get,
       recipe_name: "",
       meal_type: "",
       cuisine: "",

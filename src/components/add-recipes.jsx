@@ -9,6 +9,7 @@ import {
 } from "./base-form";
 import callAPI from "../methods/api";
 import {
+  post,
   getCategoriesParams,
   addRecipeTitle,
   addRecipeSubtitle,
@@ -19,7 +20,7 @@ class AddRecipes extends Component {
     super(props);
 
     this.state = {
-      method_type: "POST",
+      method_type: post,
       recipe: "",
       type: "",
       cuisine: "",
@@ -99,7 +100,7 @@ class AddRecipes extends Component {
       delete submit.source_error;
       delete submit.loading;
       delete submit.categories;
-      
+
       this.setState({ loading: true });
 
       callAPI(submit).then((response) => {

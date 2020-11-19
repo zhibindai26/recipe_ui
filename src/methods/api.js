@@ -1,3 +1,5 @@
+import { get, post } from "../constants/constants";
+
 async function callAPI(props) {
   const method = props.method_type;
   const headers = {
@@ -8,7 +10,7 @@ async function callAPI(props) {
     "https://xi7r6spee6.execute-api.us-east-2.amazonaws.com/prod?";
 
   try {
-    if (method === "GET") {
+    if (method === get) {
       const url = createGETUrl(props);
       const response = await fetch(endpoint + url, {
         method: method,
@@ -16,7 +18,7 @@ async function callAPI(props) {
       });
       const data = await response.json();
       return data;
-    } else if (method === "POST") {
+    } else if (method === post) {
       let body = props;
       delete body.method_type;
       delete body.email_address;

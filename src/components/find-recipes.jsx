@@ -10,6 +10,7 @@ import {
 import { Hero, Loading } from "./basic-page";
 import callAPI from "../methods/api";
 import {
+  get,
   getCategoriesParams,
   findRecipeTitle,
   findRecipeSubtitle,
@@ -20,7 +21,7 @@ class FindRecipes extends Component {
     super(props);
 
     this.state = {
-      method_type: "GET",
+      method_type: get,
       recipe_name: "",
       meal_type: "",
       cuisine: "",
@@ -93,10 +94,11 @@ class FindRecipes extends Component {
       if (responseCode !== 200) {
         return (
           <div className="container">
-            <h1>{responseMessage}</h1>
+            <Hero title={responseMessage} />
           </div>
         );
       }
+
       const recipeSearchTitle = `${recipes.length} ${recipe_name} ${responseMessage}`;
       return (
         <div className="container">

@@ -1,8 +1,15 @@
+const get = "GET";
+const post = "POST";
+
 const getCategoriesParams = {
-  method_type: "GET",
+  method_type: get,
   sample: 1,
   get_categories: "true",
 };
+
+const homeTitle = "Recipe App!";
+const homeSubtitle =
+  "Find recipes, add a new recipe, or look through the recipe database";
 
 const findRecipeTitle = "Find Existing Recipes";
 const findRecipeSubtitle =
@@ -16,7 +23,11 @@ const allRecipeTitle = "All Recipes";
 const allRecipeSubtitle = "Filter and look through the entire recipe database";
 
 export {
+  get,
+  post,
   getCategoriesParams,
+  homeTitle,
+  homeSubtitle,
   findRecipeTitle,
   findRecipeSubtitle,
   addRecipeTitle,
