@@ -18,7 +18,7 @@ const columns = [
     options: {
       customBodyRender: (value) => {
         return (
-          <a href={value} target="_blank">
+          <a href={value} target="_blank" rel="noopener noreferrer">
             {value}
           </a>
         );
