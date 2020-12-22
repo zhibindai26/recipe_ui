@@ -17,11 +17,13 @@ const columns = [
     label: "Link",
     options: {
       customBodyRender: (value) => {
-        return (
-          <a href={value} target="_blank" rel="noopener noreferrer">
-            {value}
-          </a>
-        );
+        if (value) {
+          return (
+            <a href={value} target="_blank" rel="noopener noreferrer">
+              LINK
+            </a>
+          );
+        }
       },
     },
   },

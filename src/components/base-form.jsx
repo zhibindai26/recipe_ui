@@ -242,7 +242,7 @@ function RecipeDisplay(props) {
 
   let link = props.Link ? (
     <a href={props.Link} target="_blank" rel="noopener noreferrer">
-      Link
+      LINK
     </a>
   ) : null;
 
