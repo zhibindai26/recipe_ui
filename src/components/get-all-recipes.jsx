@@ -31,7 +31,7 @@ const columns = [
 ];
 
 const options = {
-  filterType: "dropdown",
+  filterType: "multiselect",
   sortOrder: {
     name: "Recipe",
     direction: "asc",
