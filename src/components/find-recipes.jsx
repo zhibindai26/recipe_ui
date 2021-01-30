@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
-  SubmitButton,
+  Button,
+  ReloadButton,
   TextInputField,
   InputAndListFieldReadOnly,
   SingleInputAndListFieldReadOnly,
@@ -14,6 +15,7 @@ import {
   getCategoriesParams,
   findRecipeTitle,
   findRecipeSubtitle,
+  reloadFindRecipesState,
 } from "../constants/constants";
 
 class FindRecipes extends Component {
@@ -54,8 +56,8 @@ class FindRecipes extends Component {
 
   handleSubmit = (event) => {
     let submit = this.state;
-    delete submit.loading;
 
+    console.log(submit);
     callAPI(submit).then((response) => {
       this.setState({
         recipes: response.body.Recipes,
@@ -67,6 +69,12 @@ class FindRecipes extends Component {
     });
 
     event.preventDefault();
+  };
+
+  refreshPage = () => {
+    this.setState({
+      ...reloadFindRecipesState,
+    });
   };
 
   render() {
@@ -118,6 +126,7 @@ class FindRecipes extends Component {
               Notes={e.Notes}
             />
           ))}
+          <ReloadButton refreshPg={this.refreshPage} buttonMsg="Find Again" />
         </div>
       );
     }
@@ -165,7 +174,7 @@ class FindRecipes extends Component {
             cat={categories.Uploader}
           />
           <Sample sample={sample} handleSample={this.handleChange} />
-          <SubmitButton />
+          <Button buttonMsg="Submit" />
         </form>
       </div>
     );

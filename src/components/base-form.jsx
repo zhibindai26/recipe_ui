@@ -13,17 +13,29 @@ function Login(props) {
           handleChange={props.handleChange}
         />
         <FormError formError={props.loginError} />
-        <SubmitButton />
+        <Button buttonMsg="Submit" />
       </form>
     </div>
   );
 }
 
-function SubmitButton() {
+function Button(props) {
   return (
     <div className="field is-grouped">
       <div className="control">
-        <button className="button is-link is-medium">Submit</button>
+        <button className="button is-link is-medium">{props.buttonMsg}</button>
+      </div>
+    </div>
+  );
+}
+
+function ReloadButton(props) {
+  return (
+    <div className="field is-grouped">
+      <div className="control">
+        <button onClick={props.refreshPg} className="button is-link is-medium">
+          {props.buttonMsg}
+        </button>
       </div>
     </div>
   );
@@ -272,7 +284,8 @@ function RecipeDisplay(props) {
 
 export {
   Login,
-  SubmitButton,
+  Button,
+  ReloadButton,
   TextInputField,
   InputAndListField,
   InputAndListFieldReadOnly,

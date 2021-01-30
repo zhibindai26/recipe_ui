@@ -1,6 +1,35 @@
 const get = "GET";
 const post = "POST";
 
+const reloadFindRecipesState = {
+  recipe_name: "",
+  meal_type: "",
+  cuisine: "",
+  main_ingredient: "",
+  uploader: "",
+  source: "",
+  sample: 1,
+  recipes: "",
+  loading: false,
+  isSubmitted: false,
+  responseCode: "",
+  responseMessage: "",
+};
+
+const reloadAddRecipeState = {
+  recipe: "",
+  type: "",
+  cuisine: "",
+  main_ingredient: "",
+  uploader: "",
+  source: "",
+  page: "",
+  link: "",
+  notes: "",
+  loading: false,
+  message: "",
+};
+
 const getCategoriesParams = {
   method_type: get,
   sample: 1,
@@ -25,6 +54,8 @@ const allRecipeSubtitle = "Filter and look through the entire recipe database";
 export {
   get,
   post,
+  reloadFindRecipesState,
+  reloadAddRecipeState,
   getCategoriesParams,
   homeTitle,
   homeSubtitle,

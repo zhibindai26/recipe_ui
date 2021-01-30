@@ -4,7 +4,7 @@ async function callAPI(props) {
   const method = props.method_type;
   const headers = {
     "Content-Type": "application/json",
-    "X-Api-Key": props.email_address + "Ls^t14%3",
+    "X-Api-Key": props.email_address + process.env.REACT_APP_API_KEY,
   };
   const endpoint =
     "https://xi7r6spee6.execute-api.us-east-2.amazonaws.com/prod?";
@@ -19,13 +19,10 @@ async function callAPI(props) {
       const data = await response.json();
       return data;
     } else if (method === post) {
-      let body = props;
-      delete body.method_type;
-      delete body.email_address;
       const response = await fetch(endpoint, {
         method: method,
         headers: headers,
-        body: JSON.stringify(body),
+        body: JSON.stringify(props),
       });
       const data = await response.json();
       return data;

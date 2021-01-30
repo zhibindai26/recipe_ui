@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Hero, Loading } from "./basic-page";
 import {
-  SubmitButton,
+  Button,
+  ReloadButton,
   TextInputField,
   InputAndListField,
   SingleInputAndListField,
@@ -13,6 +14,7 @@ import {
   getCategoriesParams,
   addRecipeTitle,
   addRecipeSubtitle,
+  reloadAddRecipeState,
 } from "../constants/constants";
 
 class AddRecipes extends Component {
@@ -21,6 +23,7 @@ class AddRecipes extends Component {
 
     this.state = {
       method_type: post,
+      email_address: this.props.email_address,
       recipe: "",
       type: "",
       cuisine: "",
@@ -34,7 +37,6 @@ class AddRecipes extends Component {
       recipe_error: "",
       type_error: "",
       source_error: "",
-      email_address: this.props.email_address,
     };
   }
 
@@ -99,7 +101,6 @@ class AddRecipes extends Component {
       delete submit.type_error;
       delete submit.source_error;
       delete submit.loading;
-      delete submit.categories;
 
       this.setState({ loading: true });
 
@@ -110,6 +111,12 @@ class AddRecipes extends Component {
 
       event.preventDefault();
     }
+  };
+
+  refreshPage = () => {
+    this.setState({
+      ...reloadAddRecipeState,
+    });
   };
 
   render() {
@@ -136,14 +143,16 @@ class AddRecipes extends Component {
     }
 
     if (message) {
-      console.log(this.state);
       return (
         <div className="container">
           <Hero title={message} />
+          <ReloadButton
+            refreshPg={this.refreshPage}
+            buttonMsg="Add Another Recipe"
+          />
         </div>
       );
     }
-
     return (
       <div className="container">
         <Hero title={addRecipeTitle} subtitle={addRecipeSubtitle} />
@@ -207,7 +216,7 @@ class AddRecipes extends Component {
             defaultValue={notes}
             handleChange={this.handleChange}
           />
-          <SubmitButton />
+          <Button buttonMsg="Submit" />
         </form>
       </div>
     );
