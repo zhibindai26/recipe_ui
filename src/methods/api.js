@@ -6,8 +6,7 @@ async function callAPI(props) {
     "Content-Type": "application/json",
     "X-Api-Key": props.email_address + process.env.REACT_APP_API_KEY,
   };
-  const endpoint =
-    "https://xi7r6spee6.execute-api.us-east-2.amazonaws.com/prod?";
+  const endpoint = process.env.REACT_APP_API_ENDPOINT;
 
   try {
     if (method === get) {
